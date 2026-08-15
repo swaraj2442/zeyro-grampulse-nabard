@@ -1,7 +1,7 @@
 # Zeyro GramPulse: AI-Driven Cash Flow Prediction & Risk Flagging System for Rural Micro-Enterprises
 
 > **National Bank for Agriculture and Rural Development (NABARD) Rural Credit Intelligence Platform**
-> Deployed Live Prototype: [https://grampulse-nabard-demo.netlify.app](https://grampulse-nabard-demo.netlify.app)
+> Deployed Live Prototype: [https://grampulse-nabard-demo.netlify.app](https://grampulse-kappa.vercel.app)
 
 ---
 

@@ -1,1 +1,0 @@
-# Generated python protobuf package

@@ -1,0 +1,4 @@
+Metric,Base Model,RAG Pipeline,GramPulse LoRA
+Factual Alignment,0.42,0.88,0.99
+Stress Recall,0.55,0.82,0.98
+Adversarial Resilience,0.15,0.45,0.92

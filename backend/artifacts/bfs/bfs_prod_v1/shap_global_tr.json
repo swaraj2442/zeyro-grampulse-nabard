@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "cashflow.balance_trend_slope",
+    "mean_shap": 0.278008,
+    "reason": "Negative balance trajectory"
+  },
+  {
+    "feature": "income.income_regularity_score",
+    "mean_shap": 0.090224,
+    "reason": "Irregular income pattern"
+  },
+  {
+    "feature": "cashflow.end_of_month_stress_score",
+    "mean_shap": 0.074474,
+    "reason": "Month-end cash flow stress"
+  },
+  {
+    "feature": "emi.missed_emi_signals_count",
+    "mean_shap": 0.045982,
+    "reason": "Prior missed EMI signals"
+  },
+  {
+    "feature": "emi.loan_stacking_signals",
+    "mean_shap": 0.025878,
+    "reason": "Multiple new loans in 30 days (stacking)"
+  },
+  {
+    "feature": "savings.savings_to_income_ratio",
+    "mean_shap": 0.008202,
+    "reason": "Insufficient savings buffer"
+  },
+  {
+    "feature": "network.new_vpa_ratio_30d",
+    "mean_shap": 0.007098,
+    "reason": "High proportion of transfers to new unknown counterparties"
+  },
+  {
+    "feature": "emi.emi_to_income_ratio",
+    "mean_shap": 0.006899,
+    "reason": "High debt-to-income ratio"
+  },
+  {
+    "feature": "cashflow.min_balance_30d_inr",
+    "mean_shap": 0.00616,
+    "reason": null
+  },
+  {
+    "feature": "income.avg_monthly_credit_inr",
+    "mean_shap": 0.005996,
+    "reason": null
+  },
+  {
+    "feature": "quality.data_coverage_days",
+    "mean_shap": 0.00577,
+    "reason": null
+  },
+  {
+    "feature": "income.credit_to_debit_ratio",
+    "mean_shap": 0.00537,
+    "reason": null
+  },
+  {
+    "feature": "cashflow.avg_days_to_near_zero",
+    "mean_shap": 0.005205,
+    "reason": "Rapid cash depletion after payday"
+  },
+  {
+    "feature": "income.income_trend_90d",
+    "mean_shap": 0.004367,
+    "reason": null
+  },
+  {
+    "feature": "volatility.sudden_behavior_change_score",
+    "mean_shap": 0.002955,
+    "reason": "Sudden spending behaviour change"
+  },
+  {
+    "feature": "savings.recurring_sip_detected",
+    "mean_shap": 0.002478,
+    "reason": null
+  },
+  {
+    "feature": "emi.total_monthly_exposure_inr",
+    "mean_shap": 0.002377,
+    "reason": null
+  },
+  {
+    "feature": "quality.data_gap_count",
+    "mean_shap": 0.001863,
+    "reason": null
+  },
+  {
+    "feature": "quality.thin_file_flag",
+    "mean_shap": 0.000715,
+    "reason": "Insufficient transaction history (thin file)"
+  },
+  {
+    "feature": "quality.source_diversity_code",
+    "mean_shap": 0.000399,
+    "reason": null
+  }
+]

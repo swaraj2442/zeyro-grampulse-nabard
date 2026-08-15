@@ -1,0 +1,75 @@
+# ML Pipeline Architecture: End-to-End Deep Dive
+
+This document outlines the complete machine learning lifecycle in your repository—from hyperparameter tuning to production scoring. It is designed to give you a complete mental model of "who does what."
+
+---
+
+## Phase 1: Hyperparameter Tuning (The Sandbox)
+Before a final model is trained, we need to find the mathematically optimal settings (hyperparameters) for XGBoost. 
+
+* **File:** `optuna_tuner.py`
+* **What it does:** Uses Bayesian Optimization (via Optuna) to search thousands of parameter combinations.
+* **Safety Mechanisms:** 
+  * It locks away 15% of the data in an "Outer Hold-out" vault that Optuna is not allowed to see, preventing the tuner from overfitting.
+  * It uses K-Fold Cross Validation.
+  * It saves state to a SQLite database (`optuna_study.db`) so if your notebook crashes, you don't lose 5 hours of compute.
+* **Output:** A `best_params.json` file containing the winning settings.
+
+---
+
+## Phase 2: Core Model Training (The Factory)
+Once you have the best parameters, you train the actual models. Your system trains three independent models, each serving a different business purpose.
+
+### 1. BFS (Bureau Free Score)
+* **File:** `train_bfs.py`
+* **Goal:** The primary risk engine. Uses alternative/behavioral data to predict if someone will default in 90 days.
+* **Output:** `model.json` (the weights) and validation metrics.
+
+### 2. RPS (Repayment Propensity Score)
+* **File:** `train_rps.py`
+* **Goal:** A secondary model focused specifically on cashflow and EMI stress signals to predict 90-day default. 
+
+### 3. Credit Default (Traditional)
+* **File:** `train_credit.py`
+* **Goal:** The traditional credit scoring model (if standard bureau data is available).
+
+*Note: All three training scripts use `shap_explainer.py` to generate explainability plots so you know exactly which features are driving the predictions.*
+
+---
+
+## Phase 3: Post-Hoc Calibration (The Reality Check)
+Raw probabilities from tree models are often mathematically distorted (e.g., they might cluster around 0.5). Calibration forces the model's outputs to match real-world statistics.
+
+* **Files:** `calibrate_rps.py` and `calibrate_bfs.py`
+* **When it happens:** Months *after* a model launches, when you finally have real 90-day outcome data from actual issued loans.
+* **What it does:** Fits an Isotonic or Sigmoid regression on top of the model. If the calibrated model outputs a probability of `0.20`, it guarantees that historically, exactly 20% of borrowers with that score defaulted. 
+
+---
+
+## Phase 4: Fairness & Bias Mitigation (The Ethics Board)
+Before a model goes to production, it must pass a fairness audit to ensure protected classes (age, location, etc.) are treated equally.
+
+* **Files:** `fairness.py` (measuring) and `bias_mitigation.py` (acting).
+* **Level 1 (Post-processing):** `bias_mitigation.py` calculates custom approval thresholds for each demographic to ensure Equal Opportunity. 
+* **Level 2 (In-processing):** If the thresholds aren't enough, it uses `compute_fairness_weights` to mathematically force the XGBoost model to pay more attention to minorities during the actual Phase 2 training.
+* **Output:** `thresholds.json` — the demographic-specific cut-offs.
+
+---
+
+## Phase 5: Versioning & Retraining (The Librarian)
+Models degrade over time as the economy and user behavior change (Model Drift).
+
+* **Files:** `registry.py` and `retrain.py`
+* **What it does:** 
+  * `registry.py` acts as a catalog of all models (e.g., `bfs_v1`, `bfs_v2`).
+  * `retrain.py` orchestrates retraining on new data. It calculates the **PSI (Population Stability Index)** to measure how much the new applicants differ from the original training set. It then trains a new model, runs the SHAP diffs, and creates a `retrain_report.md` so a human can approve the new version.
+
+---
+
+## Phase 6: Production & Serving (The Frontlines)
+The model is deployed to a live backend server.
+
+* **File:** `scoring.py` (and your backend Rules Engine)
+* **What it does:**
+  1. `scoring.py` takes the live applicant's data, runs it through the XGBoost model, and scales the raw probability into a human-readable credit score (e.g., `680`).
+  2. The **Rules Engine** looks at the raw probability, opens `thresholds.json`, checks the applicant's demographic, and makes the final binary **Approve/Reject** decision.

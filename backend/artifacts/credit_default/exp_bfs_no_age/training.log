@@ -1,0 +1,48 @@
+================================================================================
+ BFS TRAINING RUN | run=exp_bfs_no_age | 2026-07-07T03:30:13Z
+================================================================================
+[SETUP]  Rows: 307511 | Target rate: 8.07%
+[PARAMS] n_estimators=900 | learning_rate=0.0197 | max_depth=8 | min_child_weight=19 | subsample=0.7144 | colsample_bytree=0.8056 | reg_alpha=1.3574 | reg_lambda=0.0385
+[SPLIT]  Train: 215257 | Val: 92254 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[PSI_BASELINE] Starting...
+[PSI_BASELINE] Done in 1.3s
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 51.2s
+[TRAIN]  Best round: 457
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TRAIN]
+  AUC: 0.8594  KS: 0.5556  GINI: 0.7188  BRIER: 0.1316  AVERAGE_PRECISION: 0.3796
+  Threshold=0.50  ACCURACY: 0.8295  PRECISION: 0.2740  RECALL: 0.6737  F1: 0.3895
+  TP: 11707   TN: 166853  FP: 31027   FN: 5670  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - VALIDATION]
+  AUC: 0.7617  KS: 0.3933  GINI: 0.5234  BRIER: 0.1430  AVERAGE_PRECISION: 0.2434
+  Threshold=0.50  ACCURACY: 0.8059  PRECISION: 0.2114  RECALL: 0.5145  F1: 0.2997
+  TP: 1916    TN: 35257   FP: 7146    FN: 1808  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TEST (HELD OUT)]
+  AUC: 0.7602  KS: 0.3879  GINI: 0.5204  BRIER: 0.1430  AVERAGE_PRECISION: 0.2492
+  Threshold=0.50  ACCURACY: 0.8062  PRECISION: 0.2121  RECALL: 0.5158  F1: 0.3006
+  TP: 1921    TN: 35266   FP: 7137    FN: 1803  
+────────────────────────────────────────────────────────────────────────────────
+[SHAP    ] Starting...
+[SHAP    ] Done in 1405.0s
+────────────────────────────────────────────────────────────────────────────────
+[SHAP]   Global importance (top 4):
+   1. ext_source_mean                                    0.415829  ████████████████████
+   2. ltv_ratio                                          0.157775  ███████
+   3. annuity_to_credit_ratio (High loan repayment burden) 0.137061  ██████
+   4. ext_source_product                                 0.127880  ██████
+────────────────────────────────────────────────────────────────────────────────
+[PSI_TEST] Starting...
+[PSI_TEST] Done in 0.6s
+────────────────────────────────────────────────────────────────────────────────
+[FAIRNESS] Starting...
+[FAIRNESS] Done in 0.5s
+────────────────────────────────────────────────────────────────────────────────
+[OUTPUT] d:\z-business\artifacts\credit_default\exp_bfs_no_age
+────────────────────────────────────────────────────────────────────────────────
+[DONE]   Total elapsed: 1461.8s | Summary: run_summary.json
+================================================================================

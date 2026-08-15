@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package zeyro.features.v1;
+
+option go_package = "github.com/arthazeyro/zeyro-b2b/proto/features;featurespb";
+
+message FeatureRecomputeRequest {
+  string user_ref_hash = 1;
+  string window = 2;
+  repeated string feature_groups = 3;
+}
+
+message FeatureRecord {
+  string feature_group = 1;
+  string feature_name = 2;
+  string feature_value_json = 3;
+  string computed_at = 4;
+}
+
+message FeatureResponse {
+  string user_ref_hash = 1;
+  string window = 2;
+  repeated FeatureRecord records = 3;
+}
+
+service FeatureService {
+  rpc RecomputeFeatures(FeatureRecomputeRequest) returns (FeatureResponse);
+  rpc GetFeatures(FeatureRecomputeRequest) returns (FeatureResponse);
+}

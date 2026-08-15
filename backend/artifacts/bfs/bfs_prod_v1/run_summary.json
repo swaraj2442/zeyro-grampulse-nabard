@@ -1,0 +1,41 @@
+{
+  "model": "BFS",
+  "run_name": "bfs_prod_v1",
+  "started_at": "2026-07-03T03:55:20.377423+00:00",
+  "params": {
+    "n_estimators": 400,
+    "learning_rate": 0.03645539920606815,
+    "max_depth": 4,
+    "min_child_weight": 8,
+    "subsample": 0.606987495736368,
+    "colsample_bytree": 0.8052384560854454,
+    "reg_alpha": 1.2085595388604156,
+    "reg_lambda": 0.053651285593500075,
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "use_label_encoder": false,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "n_rows": 10000,
+  "best_round": 26,
+  "metrics": {
+    "model": "bfs_test",
+    "threshold": 0.5,
+    "auc": 0.705,
+    "ks": 0.3335,
+    "gini": 0.41,
+    "brier": 0.2141,
+    "average_precision": 0.5748,
+    "accuracy": 0.6533,
+    "precision": 0.669,
+    "recall": 0.1673,
+    "f1": 0.2676,
+    "tp": 95,
+    "tn": 885,
+    "fp": 47,
+    "fn": 473
+  },
+  "total_elapsed_s": 0.76,
+  "finished_at": "2026-07-03T03:55:21.135491+00:00"
+}

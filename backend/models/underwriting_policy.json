@@ -1,0 +1,60 @@
+{
+  "version": "nabard-demo-policy-v1",
+  "trainedAt": "2026-08-06T09:54:01.881455",
+  "targetColumn": "repayment_failure_6m",
+  "features": [
+    "years_in_operation",
+    "asset_value",
+    "worker_count",
+    "sanctioned_credit_limit",
+    "loan_outstanding",
+    "credit_utilisation",
+    "days_past_due",
+    "repayment_delay_count_6m",
+    "restructured_flag",
+    "debt_service_ratio",
+    "dscr",
+    "upi_inflow_growth_1m",
+    "upi_inflow_growth_3m",
+    "upi_active_days",
+    "digital_collection_share",
+    "commodity_price_change_1m",
+    "commodity_price_volatility_3m",
+    "climate_risk_score",
+    "rainfall_anomaly_pct",
+    "cash_deficit_3m",
+    "persistent_stress_3m",
+    "repayment_risk_3m",
+    "sector",
+    "district"
+  ],
+  "categoricalFeatures": [
+    "sector",
+    "district"
+  ],
+  "testAuc": 0.9844,
+  "classificationThresholds": {
+    "ELIGIBLE": [
+      0.0,
+      0.2
+    ],
+    "CONDITIONALLY_ELIGIBLE": [
+      0.2,
+      0.45
+    ],
+    "MANUAL_REVIEW": [
+      0.45,
+      0.7
+    ],
+    "NOT_ELIGIBLE": [
+      0.7,
+      1.0
+    ]
+  },
+  "hardPolicyRules": {
+    "declineIfDpdAbove": 30,
+    "reviewIfDscrBelow": 1.0,
+    "declineIfDscrBelow": 0.8
+  },
+  "note": "Decision labels: ELIGIBLE / CONDITIONALLY_ELIGIBLE / MANUAL_REVIEW / NOT_ELIGIBLE. Trained on synthetic rural-enterprise financial panel. Not validated on real rural credit outcomes."
+}

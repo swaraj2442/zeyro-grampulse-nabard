@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "ext_source_mean",
+    "mean_shap": 0.415347,
+    "reason": null
+  },
+  {
+    "feature": "ltv_ratio",
+    "mean_shap": 0.157603,
+    "reason": null
+  },
+  {
+    "feature": "annuity_to_credit_ratio",
+    "mean_shap": 0.136132,
+    "reason": "High loan repayment burden"
+  },
+  {
+    "feature": "ext_source_product",
+    "mean_shap": 0.128429,
+    "reason": null
+  },
+  {
+    "feature": "days_id_publish",
+    "mean_shap": 0.125663,
+    "reason": null
+  },
+  {
+    "feature": "NAME_EDUCATION_TYPE_Secondary / secondary special",
+    "mean_shap": 0.089099,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_1",
+    "mean_shap": 0.085497,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_3",
+    "mean_shap": 0.083572,
+    "reason": null
+  },
+  {
+    "feature": "owns_car",
+    "mean_shap": 0.081222,
+    "reason": null
+  },
+  {
+    "feature": "AMT_ANNUITY",
+    "mean_shap": 0.074761,
+    "reason": null
+  },
+  {
+    "feature": "bureau_total_debt",
+    "mean_shap": 0.069927,
+    "reason": null
+  },
+  {
+    "feature": "bureau_max_overdue",
+    "mean_shap": 0.069262,
+    "reason": null
+  },
+  {
+    "feature": "CODE_GENDER_F",
+    "mean_shap": 0.052819,
+    "reason": null
+  },
+  {
+    "feature": "bureau_active_loans",
+    "mean_shap": 0.052553,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_2",
+    "mean_shap": 0.042683,
+    "reason": null
+  },
+  {
+    "feature": "NAME_INCOME_TYPE_Working",
+    "mean_shap": 0.040106,
+    "reason": null
+  },
+  {
+    "feature": "REGION_RATING_CLIENT",
+    "mean_shap": 0.037164,
+    "reason": null
+  },
+  {
+    "feature": "annuity_income_ratio",
+    "mean_shap": 0.036995,
+    "reason": null
+  },
+  {
+    "feature": "CODE_GENDER_M",
+    "mean_shap": 0.0363,
+    "reason": null
+  },
+  {
+    "feature": "NAME_EDUCATION_TYPE_Higher education",
+    "mean_shap": 0.036069,
+    "reason": null
+  }
+]

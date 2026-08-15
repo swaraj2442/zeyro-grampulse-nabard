@@ -1,0 +1,17 @@
+{
+  "protected_attr_col": "age_group",
+  "fallback_threshold": 0.5,
+  "optimize_metric": "balanced_accuracy",
+  "thresholds": {
+    "30-50": 0.43,
+    "<30": 0.38,
+    ">50": 0.42
+  },
+  "meta": {
+    "run_name": "homecredit_rps",
+    "di_ratio": 0.9545,
+    "di_passes": true,
+    "eod": 0.0972,
+    "overall_passes": true
+  }
+}

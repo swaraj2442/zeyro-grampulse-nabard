@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "age",
+    "mean_shap": 0.293237,
+    "reason": null
+  },
+  {
+    "feature": "ltv_ratio",
+    "mean_shap": 0.16946,
+    "reason": null
+  },
+  {
+    "feature": "annuity_to_credit_ratio",
+    "mean_shap": 0.134228,
+    "reason": "High loan repayment burden"
+  },
+  {
+    "feature": "inst_weighted_late_sum",
+    "mean_shap": 0.120981,
+    "reason": null
+  },
+  {
+    "feature": "bureau_credit_history_days",
+    "mean_shap": 0.119009,
+    "reason": null
+  },
+  {
+    "feature": "days_last_phone_change",
+    "mean_shap": 0.115349,
+    "reason": null
+  },
+  {
+    "feature": "pos_mean_instalment_future",
+    "mean_shap": 0.097271,
+    "reason": null
+  },
+  {
+    "feature": "prev_grant_ratio_mean",
+    "mean_shap": 0.096382,
+    "reason": null
+  },
+  {
+    "feature": "bureau_active_loans",
+    "mean_shap": 0.092746,
+    "reason": null
+  },
+  {
+    "feature": "CODE_GENDER_F",
+    "mean_shap": 0.09243,
+    "reason": null
+  },
+  {
+    "feature": "bureau_total_debt",
+    "mean_shap": 0.092037,
+    "reason": null
+  },
+  {
+    "feature": "prev_apps_refused",
+    "mean_shap": 0.090462,
+    "reason": null
+  },
+  {
+    "feature": "inst_max_days_late",
+    "mean_shap": 0.086024,
+    "reason": null
+  },
+  {
+    "feature": "prev_most_recent_decision_days",
+    "mean_shap": 0.084679,
+    "reason": null
+  },
+  {
+    "feature": "owns_car",
+    "mean_shap": 0.083001,
+    "reason": null
+  },
+  {
+    "feature": "REGION_RATING_CLIENT",
+    "mean_shap": 0.081701,
+    "reason": null
+  },
+  {
+    "feature": "bureau_max_overdue",
+    "mean_shap": 0.08013,
+    "reason": null
+  },
+  {
+    "feature": "NAME_FAMILY_STATUS_Married",
+    "mean_shap": 0.076854,
+    "reason": null
+  },
+  {
+    "feature": "NAME_EDUCATION_TYPE_Higher education",
+    "mean_shap": 0.076173,
+    "reason": null
+  },
+  {
+    "feature": "inst_mean_payment_fraction",
+    "mean_shap": 0.069347,
+    "reason": null
+  }
+]

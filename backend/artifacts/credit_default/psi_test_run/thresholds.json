@@ -1,0 +1,17 @@
+{
+  "protected_attr_col": "age_group",
+  "fallback_threshold": 0.5,
+  "optimize_metric": "balanced_accuracy",
+  "thresholds": {
+    "30-50": 0.3,
+    "<30": 0.3,
+    ">50": 0.3
+  },
+  "meta": {
+    "run_name": "psi_test_run",
+    "di_ratio": NaN,
+    "di_passes": false,
+    "eod": 0.0,
+    "overall_passes": false
+  }
+}

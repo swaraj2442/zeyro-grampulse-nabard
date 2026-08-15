@@ -1,0 +1,60 @@
+================================================================================
+ BFS TRAINING RUN | run=exp_default_no_ext | 2026-07-07T04:07:15Z
+================================================================================
+[SETUP]  Rows: 307511 | Target rate: 8.07%
+[PARAMS] n_estimators=600 | learning_rate=0.0223 | max_depth=7 | min_child_weight=12 | subsample=0.7095 | colsample_bytree=0.8254 | reg_alpha=0.1405 | reg_lambda=0.0578
+[SPLIT]  Train: 215257 | Val: 92254 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[PSI_BASELINE] Starting...
+[PSI_BASELINE] Done in 2.2s
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 9.6s
+================================================================================
+ BFS TRAINING RUN | run=exp_default_no_ext | 2026-07-07T04:07:30Z
+================================================================================
+[SETUP]  Rows: 307511 | Target rate: 8.07%
+[PARAMS] n_estimators=600 | learning_rate=0.0223 | max_depth=7 | min_child_weight=12 | subsample=0.7095 | colsample_bytree=0.8254 | reg_alpha=0.1405 | reg_lambda=0.0578
+[SPLIT]  Train: 215257 | Val: 92254 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[PSI_BASELINE] Starting...
+[PSI_BASELINE] Done in 2.7s
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 68.0s
+[TRAIN]  Best round: 599
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TRAIN]
+  AUC: 0.8644  KS: 0.5727  GINI: 0.7288  BRIER: 0.1370  AVERAGE_PRECISION: 0.3848
+  Threshold=0.50  ACCURACY: 0.8259  PRECISION: 0.2756  RECALL: 0.7102  F1: 0.3972
+  TP: 12342   TN: 165447  FP: 32433   FN: 5035  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - VALIDATION]
+  AUC: 0.7378  KS: 0.3501  GINI: 0.4756  BRIER: 0.1519  AVERAGE_PRECISION: 0.2180
+  Threshold=0.50  ACCURACY: 0.7957  PRECISION: 0.1957  RECALL: 0.4922  F1: 0.2801
+  TP: 1833    TN: 34871   FP: 7532    FN: 1891  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TEST (HELD OUT)]
+  AUC: 0.7407  KS: 0.3646  GINI: 0.4814  BRIER: 0.1512  AVERAGE_PRECISION: 0.2315
+  Threshold=0.50  ACCURACY: 0.7946  PRECISION: 0.1971  RECALL: 0.5027  F1: 0.2832
+  TP: 1872    TN: 34779   FP: 7624    FN: 1852  
+────────────────────────────────────────────────────────────────────────────────
+[SHAP    ] Starting...
+[SHAP    ] Done in 1209.4s
+────────────────────────────────────────────────────────────────────────────────
+[SHAP]   Global importance (top 4):
+   1. age                                                0.292144  ████████████████████
+   2. ltv_ratio                                          0.170030  ███████████
+   3. annuity_to_credit_ratio (High loan repayment burden) 0.134920  █████████
+   4. inst_weighted_late_sum                             0.120924  ████████
+────────────────────────────────────────────────────────────────────────────────
+[PSI_TEST] Starting...
+[PSI_TEST] Done in 0.3s
+────────────────────────────────────────────────────────────────────────────────
+[FAIRNESS] Starting...
+[FAIRNESS] Done in 0.2s
+────────────────────────────────────────────────────────────────────────────────
+[OUTPUT] d:\z-business\artifacts\credit_default\exp_default_no_ext
+────────────────────────────────────────────────────────────────────────────────
+[DONE]   Total elapsed: 1285.3s | Summary: run_summary.json
+================================================================================

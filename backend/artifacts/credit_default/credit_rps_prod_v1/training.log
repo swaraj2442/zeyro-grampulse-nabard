@@ -1,0 +1,39 @@
+================================================================================
+ BFS TRAINING RUN | run=credit_rps_prod_v1 | 2026-07-03T04:44:18Z
+================================================================================
+[SETUP]  Rows: 10040 | Target rate: 40.67%
+[PARAMS] n_estimators=600 | learning_rate=0.0636 | max_depth=3 | min_child_weight=17 | subsample=0.5799 | colsample_bytree=0.9931 | reg_alpha=0.0176 | reg_lambda=0.1174
+[SPLIT]  Train: 7028 | Val: 3012 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 0.1s
+[TRAIN]  Best round: 12
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TRAIN]
+  AUC: 0.8493  KS: 0.5568  GINI: 0.6986  BRIER: 0.1697  AVERAGE_PRECISION: 0.8172
+  Threshold=0.50  ACCURACY: 0.7840  PRECISION: 0.8256  RECALL: 0.5945  F1: 0.6912
+  TP: 1699    TN: 3811    FP: 359     FN: 1159  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - VALIDATION]
+  AUC: 0.8335  KS: 0.5403  GINI: 0.6670  BRIER: 0.1739  AVERAGE_PRECISION: 0.7980
+  Threshold=0.50  ACCURACY: 0.7782  PRECISION: 0.8192  RECALL: 0.5840  F1: 0.6819
+  TP: 358     TN: 814     FP: 79      FN: 255   
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TEST (HELD OUT)]
+  AUC: 0.8385  KS: 0.5303  GINI: 0.6770  BRIER: 0.1727  AVERAGE_PRECISION: 0.8018
+  Threshold=0.50  ACCURACY: 0.7703  PRECISION: 0.8093  RECALL: 0.5686  F1: 0.6679
+  TP: 348     TN: 812     FP: 82      FN: 264   
+────────────────────────────────────────────────────────────────────────────────
+[SHAP    ] Starting...
+[SHAP    ] Done in 0.1s
+────────────────────────────────────────────────────────────────────────────────
+[SHAP]   Global importance (top 4):
+   1. payment_ratio                                      0.397756  ████████████████████
+   2. avg_credit_utilisation (High credit utilization)   0.171266  ████████
+   3. dpd_30_count (Historical delinquencies)            0.164565  ████████
+   4. emi_obligations_inr                                0.024264  █
+────────────────────────────────────────────────────────────────────────────────
+[OUTPUT] d:\z-business\artifacts\credit_default\credit_rps_prod_v1
+────────────────────────────────────────────────────────────────────────────────
+[DONE]   Total elapsed: 0.4s | Summary: run_summary.json
+================================================================================

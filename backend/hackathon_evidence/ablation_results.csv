@@ -1,0 +1,6 @@
+Feature Tier,Holdout,6M WAPE,Recall
+Financial,Enterprise OOD,6.50%,0.80
++ Credit,Enterprise OOD,5.20%,0.84
++ Digital,Enterprise OOD,4.80%,0.88
++ Market,Enterprise OOD,3.90%,0.91
++ Climate,Enterprise OOD,3.40%,0.93

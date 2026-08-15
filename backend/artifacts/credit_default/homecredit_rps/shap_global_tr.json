@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "prev_grant_ratio_mean",
+    "mean_shap": 0.162378,
+    "reason": null
+  },
+  {
+    "feature": "inst_weighted_late_sum",
+    "mean_shap": 0.156943,
+    "reason": null
+  },
+  {
+    "feature": "prev_apps_refused",
+    "mean_shap": 0.142518,
+    "reason": null
+  },
+  {
+    "feature": "prev_apps_approved",
+    "mean_shap": 0.13394,
+    "reason": null
+  },
+  {
+    "feature": "inst_max_days_late",
+    "mean_shap": 0.119406,
+    "reason": null
+  },
+  {
+    "feature": "prev_most_recent_decision_days",
+    "mean_shap": 0.107766,
+    "reason": null
+  },
+  {
+    "feature": "prev_mean_hour_applied",
+    "mean_shap": 0.102888,
+    "reason": null
+  },
+  {
+    "feature": "prev_mean_down_payment",
+    "mean_shap": 0.1005,
+    "reason": null
+  },
+  {
+    "feature": "pos_mean_instalment_future",
+    "mean_shap": 0.098286,
+    "reason": null
+  },
+  {
+    "feature": "inst_weighted_late_mean",
+    "mean_shap": 0.088453,
+    "reason": null
+  },
+  {
+    "feature": "cc_mean_drawings_count",
+    "mean_shap": 0.077314,
+    "reason": null
+  },
+  {
+    "feature": "inst_mean_payment_fraction",
+    "mean_shap": 0.076099,
+    "reason": null
+  },
+  {
+    "feature": "prev_mean_rate_down_payment",
+    "mean_shap": 0.069667,
+    "reason": null
+  },
+  {
+    "feature": "inst_recent_payment_frac",
+    "mean_shap": 0.066639,
+    "reason": null
+  },
+  {
+    "feature": "cc_utilisation",
+    "mean_shap": 0.050946,
+    "reason": null
+  },
+  {
+    "feature": "cc_mean_credit_limit",
+    "mean_shap": 0.025901,
+    "reason": null
+  },
+  {
+    "feature": "cc_max_atm_drawings",
+    "mean_shap": 0.025599,
+    "reason": null
+  },
+  {
+    "feature": "pos_max_dpd_def",
+    "mean_shap": 0.024811,
+    "reason": null
+  },
+  {
+    "feature": "prev_insured_rate",
+    "mean_shap": 0.015079,
+    "reason": null
+  },
+  {
+    "feature": "prev_mean_loan_term_payments",
+    "mean_shap": 0.014733,
+    "reason": null
+  }
+]

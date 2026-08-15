@@ -1,0 +1,34 @@
+================================================================================
+ BFS TRAINING RUN | run=bfs_v1 | 2026-07-03T02:50:27Z
+================================================================================
+[SETUP]  Rows: 10000 | Target rate: 37.88%
+[PARAMS] n_estimators=500 | learning_rate=0.0500 | max_depth=5 | min_child_weight=10 | subsample=0.8000 | colsample_bytree=0.8000 | reg_alpha=0.1000 | reg_lambda=1.0000
+[SPLIT]  Train: 7000 | Val: 3000 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 1.3s
+[TRAIN]  Best round: 17
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - VALIDATION]
+  AUC: 0.6840  KS: 0.2755  GINI: 0.3680  BRIER: 0.2169  AVERAGE_PRECISION: 0.5527
+  Threshold=0.50  ACCURACY: 0.6447  PRECISION: 0.6400  RECALL: 0.1408  F1: 0.2309
+  TP: 80      TN: 887     FP: 45      FN: 488   
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TEST (HELD OUT)]
+  AUC: 0.7008  KS: 0.3283  GINI: 0.4016  BRIER: 0.2149  AVERAGE_PRECISION: 0.5686
+  Threshold=0.50  ACCURACY: 0.6560  PRECISION: 0.6806  RECALL: 0.1725  F1: 0.2753
+  TP: 98      TN: 886     FP: 46      FN: 470   
+────────────────────────────────────────────────────────────────────────────────
+[SHAP    ] Starting...
+[SHAP    ] Done in 4.1s
+────────────────────────────────────────────────────────────────────────────────
+[SHAP]   Global importance (top 4):
+   1. cashflow.balance_trend_slope (Negative balance trajectory) 0.267493  ████████████████████
+   2. income.income_regularity_score (Irregular income pattern) 0.093618  ██████
+   3. cashflow.end_of_month_stress_score (Month-end cash flow stress) 0.078751  █████
+   4. emi.missed_emi_signals_count (Prior missed EMI signals) 0.052051  ███
+────────────────────────────────────────────────────────────────────────────────
+[OUTPUT] D:\z-business\artifacts\bfs\bfs_v1
+────────────────────────────────────────────────────────────────────────────────
+[DONE]   Total elapsed: 5.5s | Summary: run_summary.json
+================================================================================

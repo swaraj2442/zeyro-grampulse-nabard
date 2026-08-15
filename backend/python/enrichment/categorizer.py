@@ -1,0 +1,2 @@
+"""Business type categorization utilities."""
+

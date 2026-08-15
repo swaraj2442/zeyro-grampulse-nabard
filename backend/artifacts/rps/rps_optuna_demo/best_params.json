@@ -1,0 +1,14 @@
+{
+  "n_estimators": 300,
+  "learning_rate": 0.02043817688355324,
+  "max_depth": 7,
+  "min_child_weight": 11,
+  "subsample": 0.6009472862670099,
+  "colsample_bytree": 0.6348446478944421,
+  "reg_alpha": 0.2985668800476883,
+  "reg_lambda": 2.2919951507022556,
+  "objective": "binary:logistic",
+  "eval_metric": "auc",
+  "random_state": 42,
+  "n_jobs": -1
+}

@@ -1,0 +1,39 @@
+================================================================================
+ BFS TRAINING RUN | run=credit_bfs_prod_v1 | 2026-07-03T04:44:17Z
+================================================================================
+[SETUP]  Rows: 10040 | Target rate: 40.67%
+[PARAMS] n_estimators=500 | learning_rate=0.0187 | max_depth=4 | min_child_weight=5 | subsample=0.8744 | colsample_bytree=0.6458 | reg_alpha=0.0068 | reg_lambda=0.0431
+[SPLIT]  Train: 7028 | Val: 3012 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 0.1s
+[TRAIN]  Best round: 24
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TRAIN]
+  AUC: 0.8575  KS: 0.5663  GINI: 0.7150  BRIER: 0.1849  AVERAGE_PRECISION: 0.8370
+  Threshold=0.50  ACCURACY: 0.7726  PRECISION: 0.8875  RECALL: 0.5049  F1: 0.6436
+  TP: 1443    TN: 3987    FP: 183     FN: 1415  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - VALIDATION]
+  AUC: 0.8448  KS: 0.5556  GINI: 0.6896  BRIER: 0.1877  AVERAGE_PRECISION: 0.8189
+  Threshold=0.50  ACCURACY: 0.7603  PRECISION: 0.8728  RECALL: 0.4812  F1: 0.6204
+  TP: 295     TN: 850     FP: 43      FN: 318   
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TEST (HELD OUT)]
+  AUC: 0.8519  KS: 0.5871  GINI: 0.7038  BRIER: 0.1846  AVERAGE_PRECISION: 0.8298
+  Threshold=0.50  ACCURACY: 0.7636  PRECISION: 0.8699  RECALL: 0.4918  F1: 0.6284
+  TP: 301     TN: 849     FP: 45      FN: 311   
+────────────────────────────────────────────────────────────────────────────────
+[SHAP    ] Starting...
+[SHAP    ] Done in 0.3s
+────────────────────────────────────────────────────────────────────────────────
+[SHAP]   Global importance (top 4):
+   1. cibil_score                                        0.175826  ████████████████████
+   2. months_inactive (Account inactivity)               0.166182  ██████████████████
+   3. avg_credit_utilisation (High credit utilization)   0.062479  ███████
+   4. credit_limit_inr                                   0.056856  ██████
+────────────────────────────────────────────────────────────────────────────────
+[OUTPUT] d:\z-business\artifacts\credit_default\credit_bfs_prod_v1
+────────────────────────────────────────────────────────────────────────────────
+[DONE]   Total elapsed: 0.6s | Summary: run_summary.json
+================================================================================

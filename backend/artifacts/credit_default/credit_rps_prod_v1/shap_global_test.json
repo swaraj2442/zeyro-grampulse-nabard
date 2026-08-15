@@ -1,0 +1,27 @@
+[
+  {
+    "feature": "payment_ratio",
+    "mean_shap": 0.397756,
+    "reason": null
+  },
+  {
+    "feature": "avg_credit_utilisation",
+    "mean_shap": 0.171266,
+    "reason": "High credit utilization"
+  },
+  {
+    "feature": "dpd_30_count",
+    "mean_shap": 0.164565,
+    "reason": "Historical delinquencies"
+  },
+  {
+    "feature": "emi_obligations_inr",
+    "mean_shap": 0.024264,
+    "reason": null
+  },
+  {
+    "feature": "balance_trend_inr",
+    "mean_shap": 0.018286,
+    "reason": null
+  }
+]

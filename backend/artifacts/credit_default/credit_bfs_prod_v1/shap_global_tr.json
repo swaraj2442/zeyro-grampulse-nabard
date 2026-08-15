@@ -1,0 +1,37 @@
+[
+  {
+    "feature": "cibil_score",
+    "mean_shap": 0.175027,
+    "reason": null
+  },
+  {
+    "feature": "months_inactive",
+    "mean_shap": 0.165278,
+    "reason": "Account inactivity"
+  },
+  {
+    "feature": "avg_credit_utilisation",
+    "mean_shap": 0.063222,
+    "reason": "High credit utilization"
+  },
+  {
+    "feature": "credit_limit_inr",
+    "mean_shap": 0.056311,
+    "reason": null
+  },
+  {
+    "feature": "annual_income_inr",
+    "mean_shap": 0.013427,
+    "reason": null
+  },
+  {
+    "feature": "num_credit_products",
+    "mean_shap": 0.009227,
+    "reason": null
+  },
+  {
+    "feature": "age",
+    "mean_shap": 0.001867,
+    "reason": null
+  }
+]

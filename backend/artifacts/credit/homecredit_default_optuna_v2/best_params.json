@@ -1,0 +1,26 @@
+{
+  "run_name": "homecredit_default_optuna_v2",
+  "best_params": {
+    "n_estimators": 900,
+    "learning_rate": 0.021327014844211012,
+    "max_depth": 6,
+    "min_child_weight": 9,
+    "subsample": 0.605658249393423,
+    "colsample_bytree": 0.7882294885469265,
+    "reg_alpha": 0.003632496968564753,
+    "reg_lambda": 0.021468154569739613,
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "best_mean_cv_auc": 0.779947,
+  "best_trial_number": 2,
+  "n_folds": 5,
+  "n_trials_requested": 5,
+  "n_trials_completed": 5,
+  "n_trials_pruned": 0,
+  "dev_set_rows": 261384,
+  "outer_holdout_rows": 46127,
+  "storage": "sqlite:///d:\\z-business\\artifacts\\credit\\homecredit_default_optuna_v2\\optuna_study.db"
+}

@@ -1,0 +1,16 @@
+{
+  "dataset_name": "GramPulse NABARD Rural Enterprise Panel v1",
+  "privacy": "Fully synthetic; no PII and no individual UPI transaction records",
+  "n_enterprises": 3250,
+  "n_rows": 117000,
+  "months_per_enterprise": 36,
+  "date_min": "2023-01-01",
+  "date_max": "2025-12-01",
+  "sectors": {
+    "Dairy": 47592,
+    "Poultry": 25920,
+    "Rural Retail": 22608,
+    "Food Processing": 20880
+  },
+  "seed": 42
+}

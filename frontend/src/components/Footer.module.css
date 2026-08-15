@@ -1,0 +1,285 @@
+.footer {
+    background: transparent;
+    padding: 0px 60px 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    /* Increased to be above Hero (10) and AI sections */
+    min-height: 86vh;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.footerHidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.footerVisible {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 6;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 80px;
+    max-width: 1400px;
+    margin: -20px auto 60px;
+}
+
+/* Column Styles */
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: lowercase;
+}
+
+
+
+/* Navigation Links Styles */
+.navLink {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    line-height: 1.2;
+}
+
+.navLink:hover {
+    color: var(--neon-green);
+    transform: translateX(8px);
+}
+
+/* Brand Section */
+.brandSection {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: visible;
+}
+
+.brandName {
+    font-family: var(--font-display);
+    font-size: clamp(80px, 12vw, 180px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--neon-green);
+    margin: 0;
+    line-height: 0.9;
+    text-transform: lowercase;
+    position: relative;
+    z-index: 101;
+}
+
+.footerVisible .brandName {
+    pointer-events: auto;
+}
+
+/* Credits Section - Now contains contact info */
+/* .credits removed as it is unused in JSX structure now */
+
+.disclaimer {
+    font-family: var(--font-body);
+    font-size: clamp(20px, 4.5vw, 50px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    max-width: 100%;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.copyright {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.termsLink {
+    color: var(--light-purple);
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.termsLink:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.reachout {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.corporateaddress {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+    text-transform: none;
+}
+
+.corporatehead {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Social Media Icons */
+.socialIcons {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.socialIcon {
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socialIcon:hover {
+    color: var(--neon-green);
+    transform: translateY(-2px);
+}
+
+/* Email Link */
+.emailLink {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.emailLink:hover {
+    color: var(--neon-green);
+    transform: scale(1.05) translateX(5px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .footer {
+        padding: 60px 40px 30px;
+    }
+
+    .container {
+        gap: 60px;
+    }
+
+    .navLink {
+        font-size: 24px;
+    }
+
+    .brandName {
+        font-size: clamp(60px, 10vw, 120px);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 50px 24px 24px;
+        min-height: 86vh;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 120px;
+        /* Space for the brand text */
+        text-align: center;
+    }
+
+    .column {
+        align-items: center;
+    }
+
+    .navLink {
+        font-size: clamp(18px, 4vw, 22px);
+    }
+
+    .brandSection {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+    }
+
+    .brandName {
+        font-size: clamp(48px, 15vw, 80px);
+    }
+
+    .copyright {
+        white-space: normal;
+    }
+}
+
+/* Badge Styles */
+.newBadge {
+    display: inline-block;
+    background: var(--neon-green);
+    color: var(--black);
+    font-size: 0.35em;
+    /* Scaled relative to parent text */
+    font-weight: 800;
+    padding: 1px 4px;
+    border-radius: 3px;
+    margin-left: 5px;
+    border: 1px solid var(--black);
+    letter-spacing: 0.5px;
+    line-height: normal;
+    vertical-align: super;
+    margin-top: 0;
+    position: relative;
+    top: -2px;
+    overflow: hidden;
+}
+
+.newBadge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    transform: skewX(-20deg);
+    animation: badgeShimmer 2s infinite;
+}
+
+@keyframes badgeShimmer {
+    0% {
+        transform: skewX(-20deg) translateX(-150%);
+    }
+
+    100% {
+        transform: skewX(-20deg) translateX(150%);
+    }
+}

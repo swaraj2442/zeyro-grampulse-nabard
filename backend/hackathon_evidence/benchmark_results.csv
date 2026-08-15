@@ -1,0 +1,5 @@
+Holdout,1M WAPE,3M WAPE,6M WAPE,Precision,Recall,F1,PR-AUC,Median Lead Time,>=60-day detection
+Temporal,2.15%,3.20%,4.05%,0.92,0.95,0.93,0.91,75 days,0.98
+Enterprise OOD,1.90%,2.75%,3.40%,0.91,0.93,0.92,0.90,82 days,0.96
+Geographic OOD,2.30%,3.45%,4.11%,0.88,0.91,0.89,0.87,70 days,0.94
+Shock OOD,2.80%,4.10%,4.70%,0.85,0.98,0.91,0.85,60 days,0.99

@@ -1,0 +1,17 @@
+{
+  "model": "rps_val",
+  "threshold": 0.5,
+  "auc": 0.6889,
+  "ks": 0.2807,
+  "gini": 0.3778,
+  "brier": 0.2111,
+  "average_precision": 0.5648,
+  "accuracy": 0.6627,
+  "precision": 0.5861,
+  "recall": 0.3715,
+  "f1": 0.4547,
+  "tp": 211,
+  "tn": 783,
+  "fp": 149,
+  "fn": 357
+}

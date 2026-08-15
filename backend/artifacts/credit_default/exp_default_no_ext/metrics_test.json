@@ -1,0 +1,18 @@
+{
+  "model": "credit_default_test",
+  "threshold": 0.5,
+  "auc": 0.7407,
+  "ks": 0.3646,
+  "gini": 0.4814,
+  "brier": 0.1512,
+  "log_loss": 0.4711,
+  "average_precision": 0.2315,
+  "accuracy": 0.7946,
+  "precision": 0.1971,
+  "recall": 0.5027,
+  "f1": 0.2832,
+  "tp": 1872,
+  "tn": 34779,
+  "fp": 7624,
+  "fn": 1852
+}

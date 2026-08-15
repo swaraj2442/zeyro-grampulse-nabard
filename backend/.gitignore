@@ -1,0 +1,28 @@
+.DS_Store
+.idea/
+.vscode/
+.venv/
+.venv_312/
+.venv_new/
+__pycache__/
+.pytest_cache/
+*.pyc
+bin/
+dist/
+build/
+coverage/
+.coverage
+node_modules/
+tmp/
+.env
+.env.*
+
+# ML tracking and model outputs
+catboost_info/
+mlruns/
+mlflow.db
+
+# Dummy Data
+dummtdatasets/**/*.csv
+dummtdatasets/**/*.parquet
+

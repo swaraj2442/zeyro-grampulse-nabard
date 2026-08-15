@@ -1,0 +1,41 @@
+{
+  "model": "RPS",
+  "run_name": "rps_v1",
+  "started_at": "2026-07-03T02:50:32.879827+00:00",
+  "params": {
+    "n_estimators": 400,
+    "learning_rate": 0.05,
+    "max_depth": 4,
+    "min_child_weight": 15,
+    "subsample": 0.8,
+    "colsample_bytree": 0.7,
+    "reg_alpha": 0.05,
+    "reg_lambda": 1.0,
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "use_label_encoder": false,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "n_rows": 10000,
+  "best_round": 56,
+  "metrics": {
+    "model": "rps_test",
+    "threshold": 0.5,
+    "auc": 0.7055,
+    "ks": 0.3232,
+    "gini": 0.411,
+    "brier": 0.2075,
+    "average_precision": 0.5773,
+    "accuracy": 0.6693,
+    "precision": 0.6047,
+    "recall": 0.3662,
+    "f1": 0.4561,
+    "tp": 208,
+    "tn": 796,
+    "fp": 136,
+    "fn": 360
+  },
+  "total_elapsed_s": 0.54,
+  "finished_at": "2026-07-03T02:50:33.421488+00:00"
+}

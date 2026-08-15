@@ -1,0 +1,10 @@
+.git/
+.venv*/
+mlruns/
+mlflow.db
+data/
+dummtdatasets/
+notebooks/
+.pytest_cache/
+artifacts/
+/auth-service

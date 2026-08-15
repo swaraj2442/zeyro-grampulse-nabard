@@ -1,0 +1,139 @@
+features:
+  # --- Cashflow Engine ---
+  - feature: ips_score
+    version: bfs_v1
+    family: cashflow
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: negative  # Higher stability = lower risk
+    description: Income Periodicity Score based on time delta variance between recurring transactions.
+
+  - feature: cash_burn_30d
+    version: bfs_v1
+    family: cashflow
+    source: upi
+    type: float
+    expected_range: [0.0, 5.0]
+    monotonicity: positive  # Higher burn = higher risk
+    description: Total outflow over last 30 days divided by assumed inflow.
+
+  - feature: savings_ratio
+    version: bfs_v1
+    family: cashflow
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: negative
+    description: Net positive balance retention.
+
+  - feature: buffer_capacity
+    version: bfs_v1
+    family: cashflow
+    source: upi
+    type: float
+    expected_range: [0.0, 100.0]
+    monotonicity: negative
+    description: Average daily balance divided by 30-day average daily spend.
+
+  # --- Behavioral Engine ---
+  - feature: velocity
+    version: bfs_v1
+    family: behavior
+    source: upi
+    type: float
+    expected_range: [0.0, 10.0]
+    monotonicity: neutral
+    description: Average transactions per day.
+
+  - feature: spending_volatility
+    version: bfs_v1
+    family: behavior
+    source: upi
+    type: float
+    expected_range: [0.0, 10000.0]
+    monotonicity: positive
+    description: Standard deviation of transaction amounts.
+
+  - feature: weekend_ratio
+    version: bfs_v1
+    family: behavior
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: positive
+    description: Proportion of spend occurring on weekends.
+
+  - feature: spending_concentration
+    version: bfs_v1
+    family: behavior
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: positive
+    description: Max spend at single merchant divided by total spend.
+
+  - feature: merchant_churn_30d
+    version: bfs_v1
+    family: behavior
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: positive
+    description: Ratio of new merchants to all merchants in last 30 days.
+
+  - feature: recurrence_score
+    version: bfs_v1
+    family: behavior
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: negative
+    description: Ratio of repeat merchant visits to total visits.
+
+  # --- Entropy Engine ---
+  - feature: merchant_entropy
+    version: bfs_v1
+    family: entropy
+    source: upi
+    type: float
+    expected_range: [0.0, 7.0]
+    monotonicity: positive
+    description: Shannon entropy of merchant spend distribution.
+
+  - feature: category_entropy
+    version: bfs_v1
+    family: entropy
+    source: upi
+    type: float
+    expected_range: [0.0, 5.0]
+    monotonicity: positive
+    description: Shannon entropy of transaction type distribution.
+
+  - feature: temporal_entropy
+    version: bfs_v1
+    family: entropy
+    source: upi
+    type: float
+    expected_range: [0.0, 4.0]
+    monotonicity: positive
+    description: Shannon entropy of transaction hours.
+
+  # --- Graph Engine ---
+  - feature: degree_centrality
+    version: bfs_v1
+    family: graph
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: negative
+    description: Number of unique merchants connected.
+
+  - feature: pagerank
+    version: bfs_v1
+    family: graph
+    source: upi
+    type: float
+    expected_range: [0.0, 1.0]
+    monotonicity: negative
+    description: Importance of user in the transaction network.

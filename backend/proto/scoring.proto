@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package zeyro.scoring.v1;
+
+option go_package = "github.com/arthazeyro/zeyro-b2b/proto/scoring;scoringpb";
+
+message ScoreRequest {
+  string partner_id = 1;
+  string user_ref_hash = 2;
+  repeated string products = 3;
+  string score_version = 4;
+}
+
+message ScoreFactor {
+  string code = 1;
+  string description = 2;
+  double impact = 3;
+}
+
+message ScoreResult {
+  string product = 1;
+  string label = 2;
+  double value = 3;
+  repeated ScoreFactor factors = 4;
+}
+
+message ScoreResponse {
+  string user_ref_hash = 1;
+  string score_version = 2;
+  repeated ScoreResult results = 3;
+}
+
+service ScoringService {
+  rpc GetScores(ScoreRequest) returns (ScoreResponse);
+}

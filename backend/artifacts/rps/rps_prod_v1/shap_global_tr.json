@@ -1,0 +1,42 @@
+[
+  {
+    "feature": "cashflow.balance_trend_slope",
+    "mean_shap": 0.079976,
+    "reason": "Negative balance trajectory"
+  },
+  {
+    "feature": "income.income_regularity_score",
+    "mean_shap": 0.027114,
+    "reason": "Irregular income pattern"
+  },
+  {
+    "feature": "cashflow.end_of_month_stress_score",
+    "mean_shap": 0.022337,
+    "reason": "Month-end cash flow stress"
+  },
+  {
+    "feature": "emi.missed_emi_signals_count",
+    "mean_shap": 0.017533,
+    "reason": "Prior missed EMI signals"
+  },
+  {
+    "feature": "cashflow.min_balance_30d_inr",
+    "mean_shap": 0.010848,
+    "reason": null
+  },
+  {
+    "feature": "emi.loan_stacking_signals",
+    "mean_shap": 0.006674,
+    "reason": "Multiple new loans in 30 days (stacking)"
+  },
+  {
+    "feature": "cashflow.avg_days_to_near_zero",
+    "mean_shap": 0.005901,
+    "reason": "Rapid cash depletion after payday"
+  },
+  {
+    "feature": "emi.bnpl_activity_detected",
+    "mean_shap": 0.000472,
+    "reason": null
+  }
+]

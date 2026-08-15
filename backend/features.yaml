@@ -1,0 +1,200 @@
+# CIBIL IND Feature Registry (BFS v0)
+version: "1.0"
+dataset: "cibil_ind"
+
+features:
+  # Demographics / Basics
+  MARITALSTATUS:
+    source: "External_Cibil_Dataset"
+    family: "demographics"
+    type: "categorical"
+  EDUCATION:
+    source: "External_Cibil_Dataset"
+    family: "demographics"
+    type: "categorical"
+  GENDER:
+    source: "External_Cibil_Dataset"
+    family: "demographics"
+    type: "categorical"
+  NETMONTHLYINCOME:
+    source: "External_Cibil_Dataset"
+    family: "financials"
+    type: "numeric"
+    monotonicity: "positive"
+  Time_With_Curr_Empr:
+    source: "External_Cibil_Dataset"
+    family: "employment"
+    type: "numeric"
+    monotonicity: "positive"
+    
+  # Credit History / Tradeliness
+  Age_Oldest_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_history"
+    type: "numeric"
+    monotonicity: "positive"
+  Age_Newest_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_history"
+    type: "numeric"
+  pct_tl_open_L6M:
+    source: "External_Cibil_Dataset"
+    family: "credit_velocity"
+    type: "numeric"
+    monotonicity: "negative"
+  pct_tl_closed_L6M:
+    source: "External_Cibil_Dataset"
+    family: "credit_velocity"
+    type: "numeric"
+  Tot_TL_closed_L12M:
+    source: "External_Cibil_Dataset"
+    family: "credit_velocity"
+    type: "numeric"
+  pct_tl_closed_L12M:
+    source: "External_Cibil_Dataset"
+    family: "credit_velocity"
+    type: "numeric"
+  CC_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_mix"
+    type: "numeric"
+  Home_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_mix"
+    type: "numeric"
+  PL_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_mix"
+    type: "numeric"
+  Secured_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_mix"
+    type: "numeric"
+  Unsecured_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_mix"
+    type: "numeric"
+  Other_TL:
+    source: "External_Cibil_Dataset"
+    family: "credit_mix"
+    type: "numeric"
+    
+  # Enquiries
+  CC_enq_L12m:
+    source: "External_Cibil_Dataset"
+    family: "enquiries"
+    type: "numeric"
+    monotonicity: "negative"
+  PL_enq_L12m:
+    source: "External_Cibil_Dataset"
+    family: "enquiries"
+    type: "numeric"
+    monotonicity: "negative"
+  time_since_recent_enq:
+    source: "External_Cibil_Dataset"
+    family: "enquiries"
+    type: "numeric"
+    monotonicity: "positive"
+  enq_L3m:
+    source: "External_Cibil_Dataset"
+    family: "enquiries"
+    type: "numeric"
+    monotonicity: "negative"
+  pct_PL_enq_L6m_of_ever:
+    source: "External_Cibil_Dataset"
+    family: "enquiries"
+    type: "numeric"
+  pct_CC_enq_L6m_of_ever:
+    source: "External_Cibil_Dataset"
+    family: "enquiries"
+    type: "numeric"
+    
+  # Delinquency / Negative Behavior
+  Tot_Missed_Pmnt:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  time_since_recent_payment:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+  max_recent_level_of_deliq:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  recent_level_of_deliq:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_deliq_6_12mts:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_times_60p_dpd:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_std_12mts:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+  num_sub:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_sub_6mts:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_sub_12mts:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_dbt:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_dbt_12mts:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+  num_lss:
+    source: "External_Cibil_Dataset"
+    family: "delinquency"
+    type: "numeric"
+    monotonicity: "negative"
+
+  # Flags
+  CC_Flag:
+    source: "External_Cibil_Dataset"
+    family: "flags"
+    type: "categorical"
+  PL_Flag:
+    source: "External_Cibil_Dataset"
+    family: "flags"
+    type: "categorical"
+  HL_Flag:
+    source: "External_Cibil_Dataset"
+    family: "flags"
+    type: "categorical"
+  GL_Flag:
+    source: "External_Cibil_Dataset"
+    family: "flags"
+    type: "categorical"
+
+target:
+  name: "Approved_Flag"
+  type: "binary"
+  note: "Approval/risk bucket (P1–P4)"
+  
+join_key: "PROSPECTID"

@@ -1,0 +1,308 @@
+{
+  "RE-00001": {
+    "forecast": {
+      "enterprise_id": "RE-00001",
+      "model_version": "grampulse-cf-v1.1",
+      "forecast": [
+        {
+          "month": "2025-01",
+          "operating_inflow": 252546.3730036826,
+          "operating_outflow": 290486.9518112358,
+          "closing_cash_balance": 625214.3941575696,
+          "cash_after_debt_service": -41017.490841782506
+        },
+        {
+          "month": "2025-02",
+          "operating_inflow": 244211.21325587816,
+          "operating_outflow": 283805.7103365038,
+          "closing_cash_balance": 641143.6026138129,
+          "cash_after_debt_service": -42671.409114854934
+        },
+        {
+          "month": "2025-03",
+          "operating_inflow": 238314.95907701494,
+          "operating_outflow": 292464.07383978914,
+          "closing_cash_balance": 589104.2107765769,
+          "cash_after_debt_service": -57226.02679700349
+        },
+        {
+          "month": "2025-04",
+          "operating_inflow": 241182.93189362038,
+          "operating_outflow": 293770.3130189386,
+          "closing_cash_balance": 676429.2201148495,
+          "cash_after_debt_service": -55664.293159547495
+        },
+        {
+          "month": "2025-05",
+          "operating_inflow": 234466.62911428948,
+          "operating_outflow": 301858.4670444818,
+          "closing_cash_balance": 610758.6545391544,
+          "cash_after_debt_service": -70468.74996442159
+        },
+        {
+          "month": "2025-06",
+          "operating_inflow": 244516.17402918157,
+          "operating_outflow": 301886.85384636914,
+          "closing_cash_balance": 602103.8723913854,
+          "cash_after_debt_service": -60447.59185141686
+        }
+      ],
+      "uncertainty": [],
+      "early_warning": {
+        "risk_score": 57,
+        "risk_level": "Medium",
+        "risk_confidence_index": 0.625,
+        "forecast_deficit": 57226.03,
+        "debt_service_shortfall": 57226.03,
+        "stress_month": "January 2025",
+        "warning_lead_time_days": 31,
+        "drivers": [
+          {
+            "feature": "Debt-service capacity",
+            "observed_value": -17.6,
+            "unit": "DSCR",
+            "contribution_points": 25.0,
+            "explanation": "Minimum projected DSCR is -17.60."
+          },
+          {
+            "feature": "Forecasted cash deficit",
+            "observed_value": -57226.03,
+            "unit": "INR",
+            "contribution_points": 23.43,
+            "explanation": "Worst projected three-month post-debt cash position is \u20b9-57,226."
+          },
+          {
+            "feature": "Market stress",
+            "observed_value": 165.02,
+            "unit": "index_100",
+            "contribution_points": 8.0,
+            "explanation": "Input-cost index is 165.0."
+          }
+        ],
+        "recommended_intervention": "Working-capital review with seasonal repayment restructuring assessment"
+      }
+    },
+    "early_warning": {
+      "enterprise_id": "RE-00001",
+      "model_version": "grampulse-cf-v1.1",
+      "forecast": [
+        {
+          "month": "2026-08",
+          "operating_inflow": 142500,
+          "operating_outflow": 128200,
+          "closing_cash_balance": 47600,
+          "cash_after_debt_service": 7300
+        }
+      ],
+      "uncertainty": [],
+      "early_warning": {
+        "risk_score": 74,
+        "risk_level": "High",
+        "risk_confidence_index": 0.74,
+        "forecast_deficit": 18400,
+        "debt_service_shortfall": 7200,
+        "stress_month": "2026-10",
+        "warning_lead_time_days": 61,
+        "drivers": [],
+        "recommended_intervention": {}
+      }
+    }
+  },
+  "RE-00002": {
+    "forecast": {
+      "enterprise_id": "RE-00002",
+      "model_version": "grampulse-cf-v1.1",
+      "forecast": [
+        {
+          "month": "2025-01",
+          "operating_inflow": 139427.92633292772,
+          "operating_outflow": 104587.24306237261,
+          "closing_cash_balance": 596521.3130207101,
+          "cash_after_debt_service": 26434.81459399994
+        },
+        {
+          "month": "2025-02",
+          "operating_inflow": 143317.424642583,
+          "operating_outflow": 102195.60449612068,
+          "closing_cash_balance": 607029.7516033484,
+          "cash_after_debt_service": 32715.951469907162
+        },
+        {
+          "month": "2025-03",
+          "operating_inflow": 139888.46347207998,
+          "operating_outflow": 102316.75058092573,
+          "closing_cash_balance": 682019.1985224471,
+          "cash_after_debt_service": 29165.84421459909
+        },
+        {
+          "month": "2025-04",
+          "operating_inflow": 140650.33181021808,
+          "operating_outflow": 113339.35007220351,
+          "closing_cash_balance": 700023.2496539943,
+          "cash_after_debt_service": 18905.113061459404
+        },
+        {
+          "month": "2025-05",
+          "operating_inflow": 141357.52498716273,
+          "operating_outflow": 109870.82160626043,
+          "closing_cash_balance": 648120.0776987046,
+          "cash_after_debt_service": 23080.834704347133
+        },
+        {
+          "month": "2025-06",
+          "operating_inflow": 134931.34464875993,
+          "operating_outflow": 105913.0453012959,
+          "closing_cash_balance": 688062.864963594,
+          "cash_after_debt_service": 20612.43067090886
+        }
+      ],
+      "uncertainty": [],
+      "early_warning": {
+        "risk_score": 6,
+        "risk_level": "Low",
+        "risk_confidence_index": 0.227,
+        "forecast_deficit": 0.0,
+        "debt_service_shortfall": 0.0,
+        "stress_month": null,
+        "warning_lead_time_days": 0,
+        "drivers": [
+          {
+            "feature": "Market stress",
+            "observed_value": 136.96,
+            "unit": "index_100",
+            "contribution_points": 5.49,
+            "explanation": "Input-cost index is 137.0."
+          }
+        ],
+        "recommended_intervention": "Market-linkage and input-cost support review"
+      }
+    },
+    "early_warning": {
+      "enterprise_id": "RE-00002",
+      "model_version": "grampulse-cf-v1.1",
+      "forecast": [
+        {
+          "month": "2026-08",
+          "operating_inflow": 142500,
+          "operating_outflow": 128200,
+          "closing_cash_balance": 47600,
+          "cash_after_debt_service": 7300
+        }
+      ],
+      "uncertainty": [],
+      "early_warning": {
+        "risk_score": 74,
+        "risk_level": "High",
+        "risk_confidence_index": 0.74,
+        "forecast_deficit": 18400,
+        "debt_service_shortfall": 7200,
+        "stress_month": "2026-10",
+        "warning_lead_time_days": 61,
+        "drivers": [],
+        "recommended_intervention": {}
+      }
+    }
+  },
+  "RE-00003": {
+    "forecast": {
+      "enterprise_id": "RE-00003",
+      "model_version": "grampulse-cf-v1.1",
+      "forecast": [
+        {
+          "month": "2025-01",
+          "operating_inflow": 139236.48883977404,
+          "operating_outflow": 103585.2131368806,
+          "closing_cash_balance": 599070.6209009379,
+          "cash_after_debt_service": 33107.1369837261
+        },
+        {
+          "month": "2025-02",
+          "operating_inflow": 138529.21674569946,
+          "operating_outflow": 102651.6195670572,
+          "closing_cash_balance": 611462.8966235099,
+          "cash_after_debt_service": 33333.45845947492
+        },
+        {
+          "month": "2025-03",
+          "operating_inflow": 135836.15003266,
+          "operating_outflow": 105386.5553268987,
+          "closing_cash_balance": 680397.2750832572,
+          "cash_after_debt_service": 25106.00553003954
+        },
+        {
+          "month": "2025-04",
+          "operating_inflow": 143156.85368608404,
+          "operating_outflow": 113260.14312790145,
+          "closing_cash_balance": 620784.1218583588,
+          "cash_after_debt_service": 27352.571839015247
+        },
+        {
+          "month": "2025-05",
+          "operating_inflow": 138270.36247015372,
+          "operating_outflow": 108102.88757013026,
+          "closing_cash_balance": 661616.4845334054,
+          "cash_after_debt_service": 27623.336180856117
+        },
+        {
+          "month": "2025-06",
+          "operating_inflow": 128730.93180154484,
+          "operating_outflow": 105412.98243301053,
+          "closing_cash_balance": 650020.8970797184,
+          "cash_after_debt_service": 20773.810649366962
+        }
+      ],
+      "uncertainty": [],
+      "early_warning": {
+        "risk_score": 8,
+        "risk_level": "Low",
+        "risk_confidence_index": 0.242,
+        "forecast_deficit": 0.0,
+        "debt_service_shortfall": 0.0,
+        "stress_month": null,
+        "warning_lead_time_days": 0,
+        "drivers": [
+          {
+            "feature": "Market stress",
+            "observed_value": 136.96,
+            "unit": "index_100",
+            "contribution_points": 5.49,
+            "explanation": "Input-cost index is 137.0."
+          },
+          {
+            "feature": "Climate stress",
+            "observed_value": 35.15,
+            "unit": "score_out_of_100",
+            "contribution_points": 2.46,
+            "explanation": "Climate-risk score is 35.1/100."
+          }
+        ],
+        "recommended_intervention": "Market-linkage and input-cost support review"
+      }
+    },
+    "early_warning": {
+      "enterprise_id": "RE-00003",
+      "model_version": "grampulse-cf-v1.1",
+      "forecast": [
+        {
+          "month": "2026-08",
+          "operating_inflow": 142500,
+          "operating_outflow": 128200,
+          "closing_cash_balance": 47600,
+          "cash_after_debt_service": 7300
+        }
+      ],
+      "uncertainty": [],
+      "early_warning": {
+        "risk_score": 74,
+        "risk_level": "High",
+        "risk_confidence_index": 0.74,
+        "forecast_deficit": 18400,
+        "debt_service_shortfall": 7200,
+        "stress_month": "2026-10",
+        "warning_lead_time_days": 61,
+        "drivers": [],
+        "recommended_intervention": {}
+      }
+    }
+  }
+}

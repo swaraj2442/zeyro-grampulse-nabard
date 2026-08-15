@@ -1,0 +1,47 @@
+[project]
+name = "zeyro-b2b"
+version = "0.1.0"
+description = "Zeyro B2B intelligence platform monorepo"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "nats-py",
+    "psycopg[binary]",
+    "pydantic"
+]
+
+[project.optional-dependencies]
+training = [
+    "xgboost>=3.1.1",
+    "shap>=0.50.0",
+    "scikit-learn>=1.6.1",
+    "numpy>=2.2.2",
+    "pandas>=2.2.3",
+    "matplotlib>=3.10.0",
+    "optuna>=3.6.1",
+    "hmeasure>=0.1.6",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["python"]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+    "agents", "data_pipeline", "enrichment", "features", "scoring", "training",
+    "dummtdatasets", "dummtdatasets.cashflow", "api"
+]
+
+[tool.setuptools.package-dir]
+"agents" = "python/agents"
+"data_pipeline" = "python/data_pipeline"
+"enrichment" = "python/enrichment"
+"features" = "python/features"
+"scoring" = "python/scoring"
+"training" = "python/training"
+"dummtdatasets" = "dummtdatasets"
+"api" = "api"

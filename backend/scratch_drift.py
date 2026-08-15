@@ -1,0 +1,188 @@
+import json
+
+notebook = {
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Drift Dashboard (BFS v0.6 Governance)\n",
+    "This dashboard monitors Feature Drift (PSI), Prediction Drift, and SHAP Drift by comparing the training baseline to the simulated out-of-time (OOT) test set."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": None,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import joblib\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn as sns\n",
+    "import shap\n",
+    "import warnings\n",
+    "warnings.filterwarnings('ignore')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": None,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def calculate_psi(expected, actual, bins=10):\n",
+    "    breakpoints = np.percentile(expected, np.arange(0, 101, 100/bins))\n",
+    "    breakpoints[0] = -np.inf\n",
+    "    breakpoints[-1] = np.inf\n",
+    "    expected_percents = np.histogram(expected, breakpoints)[0] / len(expected)\n",
+    "    actual_percents = np.histogram(actual, breakpoints)[0] / len(actual)\n",
+    "    expected_percents = np.maximum(expected_percents, 0.0001)\n",
+    "    actual_percents = np.maximum(actual_percents, 0.0001)\n",
+    "    psi = (expected_percents - actual_percents) * np.log(expected_percents / actual_percents)\n",
+    "    return np.sum(psi)\n",
+    "\n",
+    "data_dir = \"../dummtdatasets/cibil_ind\"\n",
+    "df_train = pd.read_csv(os.path.join(data_dir, \"cibil_train.csv\"))\n",
+    "df_test = pd.read_csv(os.path.join(data_dir, \"cibil_test.csv\"))\n",
+    "df_train.replace(-99999, np.nan, inplace=True)\n",
+    "df_test.replace(-99999, np.nan, inplace=True)\n",
+    "\n",
+    "drop_cols = [\n",
+    "    \"Approved_Flag\", \"PROSPECTID\", \"Credit_Score\",\n",
+    "    \"enq_L3m\", \"enq_L6m\", \"enq_L12m\", \"tot_enq\", \"time_since_recent_enq\",\n",
+    "    \"CC_enq\", \"CC_enq_L6m\", \"CC_enq_L12m\", \"PL_enq\", \"PL_enq_L6m\", \"PL_enq_L12m\",\n",
+    "    \"pct_PL_enq_L6m_of_ever\", \"pct_CC_enq_L6m_of_ever\", \"pct_PL_enq_L6m_of_L12m\", \"pct_CC_enq_L6m_of_L12m\",\n",
+    "    \"Age_Oldest_TL\", \"Age_Newest_TL\",\n",
+    "    \"time_since_recent_deliquency\", \"time_since_first_deliquency\",\n",
+    "    \"num_std_12mts\", \"num_std_6mts\", \"num_std\", \"num_times_delinquent\", \"max_delinquency_level\",\n",
+    "    \"recent_level_of_deliq\", \"max_recent_level_of_deliq\",\n",
+    "    \"CC_Flag\", \"PL_Flag\", \"HL_Flag\", \"GL_Flag\"\n",
+    "]\n",
+    "\n",
+    "X_train = df_train.drop(columns=[c for c in drop_cols if c in df_train.columns])\n",
+    "X_test = df_test.drop(columns=[c for c in drop_cols if c in df_test.columns])\n",
+    "\n",
+    "cat_cols = X_train.select_dtypes(include=['object']).columns.tolist()\n",
+    "for col in cat_cols:\n",
+    "    X_train[col] = X_train[col].astype('category')\n",
+    "    X_test[col] = X_test[col].astype('category')\n",
+    "\n",
+    "model = joblib.load(os.path.join(data_dir, \"xgboost_cibil_calibrated.pkl\"))\n",
+    "prob_train = model.predict_proba(X_train)[:, 1]\n",
+    "prob_test = model.predict_proba(X_test)[:, 1]\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": None,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 1. Feature Drift (PSI)\n",
+    "shap_df = pd.read_csv(os.path.join(data_dir, \"shap_importance.csv\"))\n",
+    "top_features = shap_df['feature'].head(10).tolist()\n",
+    "\n",
+    "psi_results = []\n",
+    "for f in top_features:\n",
+    "    if X_train[f].dtype.name != 'category':\n",
+    "        psi = calculate_psi(X_train[f].dropna(), X_test[f].dropna())\n",
+    "        psi_results.append({'Feature': f, 'PSI': psi})\n",
+    "\n",
+    "psi_df = pd.DataFrame(psi_results)\n",
+    "display(psi_df)\n",
+    "\n",
+    "plt.figure(figsize=(10, 4))\n",
+    "sns.barplot(data=psi_df, x='PSI', y='Feature', palette='Reds')\n",
+    "plt.axvline(0.1, color='orange', linestyle='--', label='Warning (0.1)')\n",
+    "plt.axvline(0.25, color='red', linestyle='--', label='Drift (0.25)')\n",
+    "plt.title('Feature Drift (PSI)')\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": None,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 2. Prediction & Score Drift\n",
+    "bfs_train = np.clip(600 - 72 * np.log(prob_train / (1 - prob_train)), 300, 900)\n",
+    "bfs_test = np.clip(600 - 72 * np.log(prob_test / (1 - prob_test)), 300, 900)\n",
+    "\n",
+    "fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))\n",
+    "sns.kdeplot(prob_train, label='Train', ax=ax1, fill=True)\n",
+    "sns.kdeplot(prob_test, label='Test (OOT)', ax=ax1, fill=True)\n",
+    "ax1.set_title('Prediction Drift (PD)')\n",
+    "ax1.legend()\n",
+    "\n",
+    "sns.kdeplot(bfs_train, label='Train', ax=ax2, fill=True, color='green')\n",
+    "sns.kdeplot(bfs_test, label='Test (OOT)', ax=ax2, fill=True, color='orange')\n",
+    "ax2.set_title('BFS Score Drift (300-900)')\n",
+    "ax2.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": None,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 3. SHAP Drift\n",
+    "# Extract base XGBoost model from the CalibratedClassifierCV\n",
+    "base_estimator = model.estimator\n",
+    "if hasattr(base_estimator, 'estimator'):\n",
+    "    base_estimator = base_estimator.estimator # FrozenEstimator unwrapping\n",
+    "explainer = shap.TreeExplainer(base_estimator)\n",
+    "\n",
+    "sample_train = X_train.sample(min(1000, len(X_train)), random_state=42)\n",
+    "sample_test = X_test.sample(min(1000, len(X_test)), random_state=42)\n",
+    "\n",
+    "shap_train = np.abs(explainer.shap_values(sample_train)).mean(axis=0)\n",
+    "shap_test = np.abs(explainer.shap_values(sample_test)).mean(axis=0)\n",
+    "\n",
+    "shap_drift = pd.DataFrame({\n",
+    "    'Feature': X_train.columns,\n",
+    "    'SHAP_Train': shap_train,\n",
+    "    'SHAP_Test': shap_test\n",
+    "})\n",
+    "shap_drift['Drift_Magnitude'] = np.abs(shap_drift['SHAP_Train'] - shap_drift['SHAP_Test'])\n",
+    "display(shap_drift.sort_values('Drift_Magnitude', ascending=False).head(10))\n",
+    "\n",
+    "plt.figure(figsize=(10, 6))\n",
+    "top_drift = shap_drift.sort_values('Drift_Magnitude', ascending=False).head(10)\n",
+    "top_drift.plot(x='Feature', y=['SHAP_Train', 'SHAP_Test'], kind='barh', figsize=(10, 6))\n",
+    "plt.title('SHAP Importance Drift (Top 10 Shifts)')\n",
+    "plt.show()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python (CIBIL XGBoost)",
+   "language": "python",
+   "name": "venv_sys"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
+
+with open("bfs/monitoring/drift_dashboard.ipynb", "w") as f:
+    json.dump(notebook, f, indent=1)

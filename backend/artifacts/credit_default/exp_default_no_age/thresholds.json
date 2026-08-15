@@ -1,0 +1,17 @@
+{
+  "protected_attr_col": "age_group",
+  "fallback_threshold": 0.5,
+  "optimize_metric": "balanced_accuracy",
+  "thresholds": {
+    "30-50": 0.42,
+    "<30": 0.4,
+    ">50": 0.3
+  },
+  "meta": {
+    "run_name": "exp_default_no_age",
+    "di_ratio": 0.5592,
+    "di_passes": false,
+    "eod": 0.169,
+    "overall_passes": false
+  }
+}

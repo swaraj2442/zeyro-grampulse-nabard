@@ -1,0 +1,17 @@
+{
+  "model": "credit_default_train",
+  "threshold": 0.5,
+  "auc": 0.8575,
+  "ks": 0.5663,
+  "gini": 0.715,
+  "brier": 0.1849,
+  "average_precision": 0.837,
+  "accuracy": 0.7726,
+  "precision": 0.8875,
+  "recall": 0.5049,
+  "f1": 0.6436,
+  "tp": 1443,
+  "tn": 3987,
+  "fp": 183,
+  "fn": 1415
+}

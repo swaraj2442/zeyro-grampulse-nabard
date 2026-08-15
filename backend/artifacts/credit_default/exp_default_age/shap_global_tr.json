@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "ext_source_mean",
+    "mean_shap": 0.406937,
+    "reason": null
+  },
+  {
+    "feature": "age",
+    "mean_shap": 0.306534,
+    "reason": null
+  },
+  {
+    "feature": "ext_source_product",
+    "mean_shap": 0.141289,
+    "reason": null
+  },
+  {
+    "feature": "ltv_ratio",
+    "mean_shap": 0.131858,
+    "reason": null
+  },
+  {
+    "feature": "annuity_to_credit_ratio",
+    "mean_shap": 0.120682,
+    "reason": "High loan repayment burden"
+  },
+  {
+    "feature": "inst_weighted_late_sum",
+    "mean_shap": 0.10657,
+    "reason": null
+  },
+  {
+    "feature": "pos_mean_instalment_future",
+    "mean_shap": 0.094596,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_1",
+    "mean_shap": 0.083891,
+    "reason": null
+  },
+  {
+    "feature": "owns_car",
+    "mean_shap": 0.072751,
+    "reason": null
+  },
+  {
+    "feature": "prev_grant_ratio_mean",
+    "mean_shap": 0.072284,
+    "reason": null
+  },
+  {
+    "feature": "AMT_ANNUITY",
+    "mean_shap": 0.070092,
+    "reason": null
+  },
+  {
+    "feature": "inst_max_days_late",
+    "mean_shap": 0.067919,
+    "reason": null
+  },
+  {
+    "feature": "CODE_GENDER_F",
+    "mean_shap": 0.066354,
+    "reason": null
+  },
+  {
+    "feature": "bureau_total_debt",
+    "mean_shap": 0.064077,
+    "reason": null
+  },
+  {
+    "feature": "inst_mean_payment_fraction",
+    "mean_shap": 0.062842,
+    "reason": null
+  },
+  {
+    "feature": "NAME_FAMILY_STATUS_Married",
+    "mean_shap": 0.06213,
+    "reason": null
+  },
+  {
+    "feature": "prev_most_recent_decision_days",
+    "mean_shap": 0.062079,
+    "reason": null
+  },
+  {
+    "feature": "prev_apps_refused",
+    "mean_shap": 0.057737,
+    "reason": null
+  },
+  {
+    "feature": "prev_mean_down_payment",
+    "mean_shap": 0.055148,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_3",
+    "mean_shap": 0.053176,
+    "reason": null
+  }
+]

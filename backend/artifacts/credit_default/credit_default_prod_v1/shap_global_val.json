@@ -1,0 +1,57 @@
+[
+  {
+    "feature": "payment_ratio",
+    "mean_shap": 0.33792,
+    "reason": null
+  },
+  {
+    "feature": "months_inactive",
+    "mean_shap": 0.285585,
+    "reason": "Account inactivity"
+  },
+  {
+    "feature": "cibil_score",
+    "mean_shap": 0.172583,
+    "reason": null
+  },
+  {
+    "feature": "avg_credit_utilisation",
+    "mean_shap": 0.131199,
+    "reason": "High credit utilization"
+  },
+  {
+    "feature": "credit_limit_inr",
+    "mean_shap": 0.091107,
+    "reason": null
+  },
+  {
+    "feature": "emi_obligations_inr",
+    "mean_shap": 0.028217,
+    "reason": null
+  },
+  {
+    "feature": "dpd_30_count",
+    "mean_shap": 0.027133,
+    "reason": "Historical delinquencies"
+  },
+  {
+    "feature": "balance_trend_inr",
+    "mean_shap": 0.024206,
+    "reason": null
+  },
+  {
+    "feature": "annual_income_inr",
+    "mean_shap": 0.016883,
+    "reason": null
+  },
+  {
+    "feature": "age",
+    "mean_shap": 0.014106,
+    "reason": null
+  },
+  {
+    "feature": "num_credit_products",
+    "mean_shap": 0.011,
+    "reason": null
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "model_name": "CatBoost Direct Multi-Horizon",
+  "model_version": "grampulse-cf-v1.1",
+  "targets": [
+    "operating_inflow",
+    "operating_outflow",
+    "closing_cash_balance"
+  ],
+  "horizons": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "feature_schema_version": "nabard-features-v1",
+  "training_cutoff": 23
+}

@@ -1,0 +1,12 @@
+================================================================================
+ BFS TRAINING RUN | run=exp_no_ext_source | 2026-07-06T10:37:05Z
+================================================================================
+[SETUP]  Rows: 307511 | Target rate: 8.07%
+[PARAMS] n_estimators=600 | learning_rate=0.0223 | max_depth=7 | min_child_weight=12 | subsample=0.7095 | colsample_bytree=0.8254 | reg_alpha=0.1405 | reg_lambda=0.0578
+[SPLIT]  Train: 215257 | Val: 92254 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[PSI_BASELINE] Starting...
+[PSI_BASELINE] Done in 2.1s
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 2.3s

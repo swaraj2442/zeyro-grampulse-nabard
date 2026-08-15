@@ -1,0 +1,39 @@
+================================================================================
+ RPS TRAINING RUN | run=rps_prod_v1 | 2026-07-03T03:55:46Z
+================================================================================
+[SETUP]  Rows: 10000 | Target rate: 37.88%
+[PARAMS] n_estimators=300 | learning_rate=0.0204 | max_depth=7 | min_child_weight=11 | subsample=0.6009 | colsample_bytree=0.6348 | reg_alpha=0.2986 | reg_lambda=2.2920
+[SPLIT]  Train: 7000 | Val: 3000 (70/30)
+────────────────────────────────────────────────────────────────────────────────
+[TRAIN   ] Starting...
+[TRAIN   ] Done in 0.1s
+[TRAIN]  Best round: 11
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TRAIN]
+  AUC: 0.7575  KS: 0.3754  GINI: 0.5150  BRIER: 0.2250  AVERAGE_PRECISION: 0.6507
+  Threshold=0.50  ACCURACY: 0.6211  PRECISION: 0.0000  RECALL: 0.0000  F1: 0.0000
+  TP: 0       TN: 4348    FP: 0       FN: 2652  
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - VALIDATION]
+  AUC: 0.6913  KS: 0.2799  GINI: 0.3826  BRIER: 0.2277  AVERAGE_PRECISION: 0.5756
+  Threshold=0.50  ACCURACY: 0.6213  PRECISION: 0.0000  RECALL: 0.0000  F1: 0.0000
+  TP: 0       TN: 932     FP: 0       FN: 568   
+────────────────────────────────────────────────────────────────────────────────
+[METRICS - TEST (HELD OUT)]
+  AUC: 0.7020  KS: 0.3356  GINI: 0.4040  BRIER: 0.2274  AVERAGE_PRECISION: 0.5711
+  Threshold=0.50  ACCURACY: 0.6213  PRECISION: 0.0000  RECALL: 0.0000  F1: 0.0000
+  TP: 0       TN: 932     FP: 0       FN: 568   
+────────────────────────────────────────────────────────────────────────────────
+[SHAP    ] Starting...
+[SHAP    ] Done in 0.4s
+────────────────────────────────────────────────────────────────────────────────
+[SHAP]   Global importance (top 4):
+   1. cashflow.balance_trend_slope (Negative balance trajectory) 0.079873  ████████████████████
+   2. income.income_regularity_score (Irregular income pattern) 0.027415  ██████
+   3. cashflow.end_of_month_stress_score (Month-end cash flow stress) 0.022538  █████
+   4. emi.missed_emi_signals_count (Prior missed EMI signals) 0.017362  ████
+────────────────────────────────────────────────────────────────────────────────
+[OUTPUT] d:\z-business\artifacts\rps\rps_prod_v1
+────────────────────────────────────────────────────────────────────────────────
+[DONE]   Total elapsed: 0.8s | Summary: run_summary.json
+================================================================================

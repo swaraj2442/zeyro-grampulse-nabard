@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "cashflow.balance_trend_slope",
+    "mean_shap": 0.271707,
+    "reason": "Negative balance trajectory"
+  },
+  {
+    "feature": "income.income_regularity_score",
+    "mean_shap": 0.093678,
+    "reason": "Irregular income pattern"
+  },
+  {
+    "feature": "cashflow.end_of_month_stress_score",
+    "mean_shap": 0.081285,
+    "reason": "Month-end cash flow stress"
+  },
+  {
+    "feature": "emi.missed_emi_signals_count",
+    "mean_shap": 0.053104,
+    "reason": "Prior missed EMI signals"
+  },
+  {
+    "feature": "emi.loan_stacking_signals",
+    "mean_shap": 0.027923,
+    "reason": "Multiple new loans in 30 days (stacking)"
+  },
+  {
+    "feature": "emi.emi_to_income_ratio",
+    "mean_shap": 0.011968,
+    "reason": "High debt-to-income ratio"
+  },
+  {
+    "feature": "income.avg_monthly_credit_inr",
+    "mean_shap": 0.009022,
+    "reason": null
+  },
+  {
+    "feature": "cashflow.min_balance_30d_inr",
+    "mean_shap": 0.008632,
+    "reason": null
+  },
+  {
+    "feature": "network.new_vpa_ratio_30d",
+    "mean_shap": 0.008536,
+    "reason": "High proportion of transfers to new unknown counterparties"
+  },
+  {
+    "feature": "cashflow.avg_days_to_near_zero",
+    "mean_shap": 0.008108,
+    "reason": "Rapid cash depletion after payday"
+  },
+  {
+    "feature": "quality.data_coverage_days",
+    "mean_shap": 0.007531,
+    "reason": null
+  },
+  {
+    "feature": "savings.savings_to_income_ratio",
+    "mean_shap": 0.007247,
+    "reason": "Insufficient savings buffer"
+  },
+  {
+    "feature": "emi.total_monthly_exposure_inr",
+    "mean_shap": 0.00663,
+    "reason": null
+  },
+  {
+    "feature": "income.income_trend_90d",
+    "mean_shap": 0.005263,
+    "reason": null
+  },
+  {
+    "feature": "volatility.sudden_behavior_change_score",
+    "mean_shap": 0.00515,
+    "reason": "Sudden spending behaviour change"
+  },
+  {
+    "feature": "income.credit_to_debit_ratio",
+    "mean_shap": 0.00468,
+    "reason": null
+  },
+  {
+    "feature": "savings.recurring_sip_detected",
+    "mean_shap": 0.001269,
+    "reason": null
+  },
+  {
+    "feature": "quality.data_gap_count",
+    "mean_shap": 0.001142,
+    "reason": null
+  },
+  {
+    "feature": "quality.source_diversity_code",
+    "mean_shap": 0.000401,
+    "reason": null
+  },
+  {
+    "feature": "emi.bnpl_activity_detected",
+    "mean_shap": 0.0,
+    "reason": null
+  }
+]

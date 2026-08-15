@@ -1,0 +1,1966 @@
+# Screenwise Schema for Officergram
+
+This document provides a detailed mapping of all screens in the application, their expected parameters, and the data models they utilize.
+
+## SplashScreen
+- **Route Path**: `/splash`
+- **File**: `...\lib\features\onboarding\screens\splash_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## LanguageScreen
+- **Route Path**: `/language`
+- **File**: `...\lib\features\onboarding\screens\language_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `MockData`
+
+## LoginScreen
+- **Route Path**: `/login`
+- **File**: `...\lib\features\auth\screens\login_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## OtpScreen
+- **Route Path**: `/otp`
+- **File**: `...\lib\features\auth\screens\otp_screen.dart`
+- **Parameters**: phone
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## LocationPermissionScreen
+- **Route Path**: `/location-permission`
+- **File**: `...\lib\features\onboarding\screens\location_permission_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## CameraPermissionScreen
+- **Route Path**: `/camera-permission`
+- **File**: `...\lib\features\onboarding\screens\camera_permission_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## NotificationPermissionScreen
+- **Route Path**: `/notification-permission`
+- **File**: `...\lib\features\onboarding\screens\notification_permission_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## FieldBriefScreen
+- **Route Path**: `/field-brief`
+- **File**: `...\lib\features\onboarding\screens\field_brief_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## TodaysFocusScreen
+- **Route Path**: `/todays-focus`
+- **File**: `...\lib\features\home\screens\todays_focus_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## TodaysBriefScreen
+- **Route Path**: `/todays-brief`
+- **File**: `...\lib\features\home\screens\todays_brief_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## WhyFlaggedScreen
+- **Route Path**: `/insights/why-flagged/:id`
+- **File**: `...\lib\features\insights\screens\why_flagged_screen.dart`
+- **Parameters**: id
+- **Data Models Used**:
+  - `WhyFlaggedData`
+    - `enterpriseId: String`
+    - `name: String`
+    - `sector: String`
+    - `location: String`
+    - `riskBadgeText: String`
+    - `riskBadgeColor: Color`
+    - `riskBadgeBgColor: Color`
+    - `factors: List<FlagFactor>`
+    - `actionPath: String`
+
+## BusinessesAtRiskScreen
+- **Route Path**: `/risk-early-warning/businesses-at-risk`
+- **File**: `...\lib\features\insights\screens\businesses_at_risk_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `BusinessAtRiskItem`
+    - `id: String`
+    - `name: String`
+    - `typeAndLocation: String`
+    - `statusColor: Color`
+    - `signalIcon: IconData`
+    - `signalColor: Color`
+    - `signalTitle: String`
+    - `signalDesc: String`
+
+## CashPressureScreen
+- **Route Path**: `/risk-early-warning/cash-pressure`
+- **File**: `...\lib\features\insights\screens\cash_pressure_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `CashPressureItem`
+    - `id: String`
+    - `name: String`
+    - `icon: IconData`
+    - `iconBgColor: Color`
+    - `statusColor: Color`
+    - `signalTitle: String`
+    - `signalDesc: String`
+    - `whyItMattersDesc: String`
+
+## RecommendedInterventionScreen
+- **Route Path**: `/intervention/:id`
+- **File**: `...\lib\features\insights\screens\recommended_intervention_screen.dart`
+- **Parameters**: id
+- **Data Models Used**:
+  - `MockData`
+  - `RecommendedActionData`
+    - `enterpriseId: String`
+    - `name: String`
+    - `sector: String`
+    - `location: String`
+    - `riskBadgeText: String`
+    - `riskBadgeColor: Color`
+    - `riskBadgeBgColor: Color`
+    - `recommendation: ActionRecommendation`
+    - `reasons: List<ActionReason>`
+    - `outcomeText: String`
+    - `deferActionPath: String`
+    - `createInterventionPath: String`
+
+## WhyThisMattersScreen
+- **Route Path**: `/why-this-matters`
+- **File**: `...\lib\features\insights\screens\why_this_matters_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## EnterpriseOverviewScreen
+- **Route Path**: `/portfolio/enterprise/:id`
+- **File**: `...\lib\features\portfolio\screens\enterprise_overview_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## GrampulseViewScreen
+- **Route Path**: `grampulse`
+- **File**: `...\lib\features\portfolio\screens\grampulse_view_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `GramPulseItemModel`
+    - `icon: IconData`
+    - `iconColor: Color`
+    - `title: String`
+    - `statusText: String`
+    - `statusColor: Color`
+  - `GramPulseViewModel`
+    - `statusHeading: String`
+    - `statusSentence: String`
+    - `statusPillText: String`
+    - `statusPillColor: Color`
+    - `healthScore: int`
+    - `whyList: List<GramPulseItemModel>`
+    - `whatMayChangeList: List<GramPulseItemModel>`
+    - `whatToDoText: String`
+    - `lastUpdated: String`
+
+## GramPulseSignalsScreen
+- **Route Path**: `signals`
+- **File**: `...\lib\features\portfolio\screens\grampulse_signals_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `SignalCardModel`
+    - `themeColor: Color`
+    - `backgroundColor: Color`
+    - `icon: IconData`
+    - `categoryLabel: String`
+    - `title: String`
+    - `subtitle: String`
+    - `sourceLabel: String`
+    - `rightWidgetType: SignalRightWidgetType`
+    - `aiInsight: String`
+  - `GramPulseSignalsModel`
+    - `screenTitle: String`
+    - `screenSubtitle: String`
+    - `signalsList: List<SignalCardModel>`
+    - `footerTitle: String`
+    - `footerSubtext: String`
+
+## GramPulseWhyMattersScreen
+- **Route Path**: `why-it-matters`
+- **File**: `...\lib\features\portfolio\screens\grampulse_why_matters_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `GramPulseWhyMattersModel`
+    - `screenTitle: String`
+    - `screenSubtitle: String`
+    - `explanation: WhyMattersExplanation`
+    - `reasons: List<KeyReasonItem>`
+    - `evidence: List<EvidenceItem>`
+    - `evidenceDisclaimer: String`
+
+## GrampulseRecommendedActionScreen
+- **Route Path**: `recommended-action`
+- **File**: `...\lib\features\portfolio\screens\grampulse_recommended_action_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `RecommendedActionModel`
+    - `currentPositionTitle: String`
+    - `currentPositionSubtitle: String`
+    - `currentPositionPill: String`
+    - `reason1Title: String`
+    - `reason1Subtitle: String`
+    - `reason2Title: String`
+    - `reason2Subtitle: String`
+    - `reason3Title: String`
+    - `reason3Subtitle: String`
+    - `reason4Title: String`
+    - `reason4Subtitle: String`
+    - `gramPulseViewText: String`
+    - `recommendedActionTitle: String`
+    - `recommendedActionSubtitle: String`
+  - `RecommendedActionData`
+    - `enterpriseId: String`
+    - `name: String`
+    - `sector: String`
+    - `location: String`
+    - `riskBadgeText: String`
+    - `riskBadgeColor: Color`
+    - `riskBadgeBgColor: Color`
+    - `recommendation: ActionRecommendation`
+    - `reasons: List<ActionReason>`
+    - `outcomeText: String`
+    - `deferActionPath: String`
+    - `createInterventionPath: String`
+  - `GramPulseRecommendedActionModel`
+    - `screenTitle: String`
+    - `screenSubtitle: String`
+    - `recommendation: RecommendationAction`
+    - `reasons: List<ActionReasonItem>`
+    - `aiReasonText: String`
+    - `expectedOutcomes: List<ExpectedOutcomeItem>`
+    - `disclaimer: String`
+
+## UpcomingRepaymentScreen
+- **Route Path**: `upcoming-repayment`
+- **File**: `...\lib\features\portfolio\screens\upcoming_repayment_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `UpcomingRepaymentModel`
+    - `amount: String`
+    - `date: String`
+    - `status: String`
+    - `cashInsight: String`
+
+## RepaymentHistoryScreen
+- **Route Path**: `repayment-history`
+- **File**: `...\lib\features\portfolio\screens\repayment_history_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `RepaymentHistoryModel`
+    - `outstandingAmount: String`
+    - `nextPaymentAmount: String`
+    - `nextPaymentDate: String`
+    - `repaymentBehaviourStatus: String`
+    - `history: List<RepaymentHistoryItemModel>`
+
+## RepaymentBehaviourScreen
+- **Route Path**: `repayment-behaviour`
+- **File**: `...\lib\features\portfolio\screens\repayment_behaviour_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `RepaymentBehaviourModel`
+    - `totalPayments: int`
+    - `onTimePayments: int`
+    - `delayedPayments: int`
+    - `missedPayments: int`
+    - `recentHistory: List<RepaymentHistoryItemModel>`
+    - `aiInsightTitle: String`
+    - `aiInsightDescription: String`
+
+## RepaymentEventScreen
+- **Route Path**: `repayment-event`
+- **File**: `...\lib\features\portfolio\screens\repayment_event_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `RepaymentEventModel`
+    - `amount: String`
+    - `date: String`
+    - `status: String`
+    - `sourceTitle: String`
+    - `sourceSubtitle: String`
+    - `relatedTitle: String`
+    - `relatedSubtitle: String`
+
+## CreditRiskScreen
+- **Route Path**: `credit-risk`
+- **File**: `...\lib\features\portfolio\screens\credit_risk_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `EvidenceItem`
+    - `icon: IconData`
+    - `themeColor: Color`
+    - `backgroundColor: Color`
+    - `title: String`
+    - `sourceLabel: String`
+    - `rightTopText: String`
+    - `rightTopColor: Color`
+    - `rightBottomText: String`
+    - `hasStableDot: bool`
+  - `CreditRiskModel`
+    - `riskLevel: String`
+    - `riskSubtitle: String`
+    - `riskPillText: String`
+    - `gramPulseViewTitle: String`
+    - `whatThisMeansText: String`
+    - `repaymentBehaviourEvidence: String`
+    - `upcomingObligationsEvidence: String`
+    - `cashFlowOutlookEvidence: String`
+    - `keyInsight: String`
+
+## RecommendedActionScreen
+- **Route Path**: `recommended-action`
+- **File**: `...\lib\features\portfolio\screens\recommended_action_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `RecommendedActionModel`
+    - `currentPositionTitle: String`
+    - `currentPositionSubtitle: String`
+    - `currentPositionPill: String`
+    - `reason1Title: String`
+    - `reason1Subtitle: String`
+    - `reason2Title: String`
+    - `reason2Subtitle: String`
+    - `reason3Title: String`
+    - `reason3Subtitle: String`
+    - `reason4Title: String`
+    - `reason4Subtitle: String`
+    - `gramPulseViewText: String`
+    - `recommendedActionTitle: String`
+    - `recommendedActionSubtitle: String`
+
+## BusinessOperationsScreen
+- **Route Path**: `business-operations`
+- **File**: `...\lib\features\portfolio\screens\business_operations_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `OperationItemModel`
+    - `title: String`
+    - `subtitle: String`
+    - `statusText: String`
+    - `statusLevel: String`
+    - `icon: IconData`
+  - `BusinessOperationsModel`
+    - `items: List<OperationItemModel>`
+    - `gramPulseText: String`
+    - `keyTakeawayText: String`
+
+## SalesCollectionsScreen
+- **Route Path**: `sales-collections`
+- **File**: `...\lib\features\portfolio\screens\sales_collections_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `SalesCollectionsModel`
+    - `milkCollectionsSubtitle: String`
+    - `milkCollectionsPill: String`
+    - `milkCollectionsPillLevel: String`
+    - `expectedInflowAmount: String`
+    - `expectedInflowSubtitle: String`
+    - `recentActivitySubtitle: String`
+    - `recentActivityPill: String`
+    - `recentActivityPillLevel: String`
+    - `gramPulseText: String`
+    - `infoTextTitle: String`
+    - `infoTextSubtitle: String`
+    - `infoLevel: String`
+
+## InputCostsScreen
+- **Route Path**: `input-costs`
+- **File**: `...\lib\features\portfolio\screens\input_costs_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `InputCostMetricModel`
+    - `title: String`
+    - `valueText: String`
+    - `valueSubtitle: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `icon: IconData`
+  - `InputCostsModel`
+    - `metrics: List<InputCostMetricModel>`
+    - `gramPulseText: String`
+    - `infoText: String`
+
+## BusinessActivityScreen
+- **Route Path**: `business-activity`
+- **File**: `...\lib\features\portfolio\screens\business_activity_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `ActivityBreakdownItemModel`
+    - `title: String`
+    - `subtitle: String`
+    - `status: String`
+    - `icon: IconData`
+  - `ChartDataPoint`
+    - `label: String`
+    - `value1: double`
+  - `ActivityPatternData`
+    - `dataPoints: List<ChartDataPoint>`
+    - `averageValue: double`
+    - `trend: String`
+    - `highestValue: String`
+    - `highestDate: String`
+    - `lowestValue: String`
+    - `lowestDate: String`
+    - `insightText: String`
+  - `BusinessActivityModel`
+    - `title: String`
+    - `subtitle: String`
+    - `currentStatus: String`
+    - `patternData: ActivityPatternData`
+    - `breakdown: List<ActivityBreakdownItemModel>`
+    - `aiInsightTitle: String`
+
+## BusinessActivityWhatChangedScreen
+- **Route Path**: `business-activity-what-changed`
+- **File**: `...\lib\features\portfolio\screens\business_activity_what_changed_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `WhatChangedMetricModel`
+    - `title: String`
+    - `valueText: String`
+    - `valueSubtitle: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `icon: IconData`
+  - `BusinessActivityWhatChangedModel`
+    - `title: String`
+    - `subtitle: String`
+    - `metrics: List<WhatChangedMetricModel>`
+    - `aiInsightText: String`
+  - `ChartDataPoint`
+    - `label: String`
+    - `value1: double`
+  - `WhatChangedModel`
+    - `metrics: List<WhatChangedMetricModel>`
+    - `gramPulseText: String`
+    - `whyThisMattersText: String`
+    - `infoText: String`
+
+## BusinessActivityWhyMattersScreen
+- **Route Path**: `business-activity-why-matters`
+- **File**: `...\lib\features\portfolio\screens\business_activity_why_matters_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `WhatToWatchModel`
+    - `icon: IconData`
+    - `title: String`
+    - `description: String`
+    - `trailingIcon: IconData`
+  - `EvidenceMetricModel`
+    - `title: String`
+    - `subtitle: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `statText: String`
+    - `icon: IconData`
+    - `chartType: String`
+    - `sparklineData: List<double>`
+  - `BusinessActivityWhyMattersModel`
+    - `title: String`
+    - `subtitle: String`
+    - `gramPulseIntro: String`
+    - `evidenceMetrics: List<EvidenceMetricModel>`
+    - `evidenceSummary: String`
+    - `whatToWatch: WhatToWatchModel`
+    - `aiInsightTitle: String`
+    - `aiInsightSubtitle: String`
+
+## SectorIntelligenceScreen
+- **Route Path**: `sector-intelligence`
+- **File**: `...\lib\features\portfolio\screens\sector_intelligence_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `SectorMetricModel`
+    - `title: String`
+    - `subtitle: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `icon: IconData`
+    - `chartData: List<SectorDataPoint>`
+  - `SectorDataPoint`
+    - `businessValue: double`
+    - `sectorValue: double`
+  - `SectorIntelligenceModel`
+    - `sectorName: String`
+    - `sectorIcon: IconData`
+    - `aiInsightTitle: String`
+    - `aiInsightSubtitle: String`
+    - `metrics: List<SectorMetricModel>`
+
+## SectorBenchmarkScreen
+- **Route Path**: `sector-benchmark`
+- **File**: `...\lib\features\portfolio\screens\sector_benchmark_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `BenchmarkMetricModel`
+    - `icon: IconData`
+    - `title: String`
+    - `unit: String`
+    - `subtitle: String`
+    - `businessValue: double`
+    - `businessFormatted: String`
+    - `sectorValue: double`
+    - `sectorFormatted: String`
+    - `pillText: String`
+    - `pillLevel: String`
+  - `SectorBenchmarkModel`
+    - `sectorName: String`
+    - `sectorIcon: IconData`
+    - `ownerName: String`
+    - `aiInsightText: String`
+    - `metrics: List<BenchmarkMetricModel>`
+
+## SectorVsEnterpriseScreen
+- **Route Path**: `sector-vs-enterprise`
+- **File**: `...\lib\features\portfolio\screens\sector_vs_enterprise_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `SectorVsEnterpriseMetricModel`
+    - `icon: IconData`
+    - `title: String`
+    - `subtitle: String`
+    - `businessValue: String`
+    - `sectorValue: String`
+    - `businessRaw: double`
+    - `sectorRaw: double`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `rightSideInsight: String`
+    - `bottomComparison: String`
+  - `SectorVsEnterpriseModel`
+    - `ownerName: String`
+    - `sectorName: String`
+    - `sectorIcon: IconData`
+    - `aiInsightText: String`
+    - `metrics: List<SectorVsEnterpriseMetricModel>`
+
+## SectorTrendScreen
+- **Route Path**: `sector-trend`
+- **File**: `...\lib\features\portfolio\screens\sector_trend_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `SectorTrendMetricModel`
+    - `icon: IconData`
+    - `title: String`
+    - `unit: String`
+    - `value: String`
+    - `changePercentage: String`
+    - `changeDirection: String`
+    - `durationText: String`
+    - `sparklineData: List<double>`
+    - `chartColor: Color`
+  - `SectorTrendModel`
+    - `sectorName: String`
+    - `sectorIcon: IconData`
+    - `milkPrices: SectorTrendMetricModel`
+    - `feedCosts: SectorTrendMetricModel`
+    - `outlook: SectorOutlookModel`
+    - `drivers: List<TrendDriverModel>`
+    - `aiInsightText: String`
+  - `SectorOutlookModel`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `gaugeValue: double`
+
+## BusinessTimelineScreen
+- **Route Path**: `timeline`
+- **File**: `...\lib\features\portfolio\screens\business_timeline_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `TimelineSummaryModel`
+    - `title: String`
+    - `description: String`
+    - `icon: IconData`
+  - `TimelineEventModel`
+    - `date: String`
+    - `title: String`
+    - `description: String`
+    - `icon: IconData`
+    - `iconColor: Color`
+    - `pillText: String`
+    - `pillLevel: String`
+
+## TimelineEventDetailScreen
+- **Route Path**: `event-detail/:eventId`
+- **File**: `...\lib\features\portfolio\screens\timeline_event_detail_screen.dart`
+- **Parameters**: enterpriseId, eventId
+- **Data Models Used**:
+  - `EventDetailFieldModel`
+    - `title: String`
+    - `value: String`
+    - `icon: IconData`
+  - `EvidenceModel`
+    - `imageUrl: String`
+    - `note: String`
+  - `EventInsightModel`
+    - `title: String`
+    - `subtitle: String`
+    - `description: String`
+  - `TimelineEventDetailModel`
+    - `title: String`
+    - `date: String`
+    - `icon: IconData`
+    - `iconColor: Color`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `fields: List<EventDetailFieldModel>`
+    - `insight: EventInsightModel`
+    - `ctaText: String`
+    - `ctaIcon: IconData`
+
+## TransactionDetailScreen
+- **Route Path**: `transaction/:transactionId`
+- **File**: `...\lib\features\portfolio\screens\transaction_detail_screen.dart`
+- **Parameters**: enterpriseId, transactionId
+- **Data Models Used**:
+  - `TransactionDetailModel`
+    - `title: String`
+    - `type: String`
+    - `amount: String`
+    - `description: String`
+    - `mainIcon: IconData`
+    - `mainIconColor: Color`
+    - `badgeIcon: IconData`
+    - `badgeColor: Color`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `fields: List<TransactionFieldModel>`
+    - `insightTitle: String`
+    - `insightDescription: String`
+  - `TransactionFieldModel`
+    - `title: String`
+    - `value: String`
+    - `icon: IconData`
+
+## DocumentDetailScreen
+- **Route Path**: `document/:documentId`
+- **File**: `...\lib\features\portfolio\screens\document_detail_screen.dart`
+- **Parameters**: enterpriseId, documentId
+- **Data Models Used**:
+  - `DocumentFieldModel`
+    - `title: String`
+    - `value: String`
+    - `icon: IconData`
+  - `DocumentDetailModel`
+    - `title: String`
+    - `imageUrl: String`
+    - `badgeIcon: IconData`
+    - `badgeColor: Color`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `description: String`
+    - `fields: List<DocumentFieldModel>`
+    - `insightTitle: String`
+    - `insightDescription: String`
+    - `ctaText: String`
+    - `ctaIcon: IconData`
+
+## SectorImpactScreen
+- **Route Path**: `sector-impact`
+- **File**: `...\lib\features\portfolio\screens\sector_impact_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `SectorImpactModel`
+    - `sectorName: String`
+    - `dateRange: String`
+    - `sectorIcon: IconData`
+    - `trends: List<ImpactTrendModel>`
+    - `aiInsightText: String`
+    - `drivers: List<ImpactDriverModel>`
+  - `ImpactTrendModel`
+    - `label: String`
+    - `labelColorLevel: String`
+    - `title: String`
+    - `description: String`
+    - `icon: IconData`
+    - `sparklineData: List<double>`
+    - `xAxisLabels: List<String>`
+
+## WhatsChangingScreen
+- **Route Path**: `what-changed`
+- **File**: `...\lib\features\portfolio\screens\whats_changing_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `WhatChangedMetricModel`
+    - `title: String`
+    - `valueText: String`
+    - `valueSubtitle: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `icon: IconData`
+  - `WhatChangedModel`
+    - `metrics: List<WhatChangedMetricModel>`
+    - `gramPulseText: String`
+    - `whyThisMattersText: String`
+    - `infoText: String`
+
+## InventoryScreen
+- **Route Path**: `inventory`
+- **File**: `...\lib\features\portfolio\screens\inventory_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `InventoryMetricModel`
+    - `title: String`
+    - `subtitle: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `icon: IconData`
+  - `InventoryModel`
+    - `overallStatusTitle: String`
+    - `overallStatusSubtitle: String`
+    - `overallStatusPill: String`
+    - `overallStatusPillLevel: String`
+    - `metrics: List<InventoryMetricModel>`
+    - `lastObservation: InventoryObservationModel`
+    - `gramPulseText: String`
+  - `InventoryObservationModel`
+    - `type: String`
+    - `date: String`
+    - `visitedByName: String`
+    - `visitedByRole: String`
+
+## MarketIntelligenceScreen
+- **Route Path**: `market-intelligence`
+- **File**: `...\lib\features\portfolio\screens\market_intelligence_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MarketIntelligenceModel`
+    - `metrics: List<MarketMetricModel>`
+    - `insightPart1: String`
+    - `insightHighlight1: String`
+    - `insightPart2: String`
+    - `insightHighlight2: String`
+    - `highlight1Level: String`
+    - `highlight2Level: String`
+    - `alertText: String`
+    - `footerText: String`
+  - `MarketMetricModel`
+    - `id: String`
+    - `title: String`
+    - `valueText: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `icon: IconData`
+    - `chartData: List<double>`
+
+## MarketTrendScreen
+- **Route Path**: `market-trend`
+- **File**: `...\lib\features\portfolio\screens\market_trend_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `ChartPoint`
+    - `label: String`
+    - `yValue: double`
+  - `MarketTrendModel`
+    - `title: String`
+    - `subtitle: String`
+    - `filterText: String`
+    - `chartData: List<TrendChartPoint>`
+    - `minY: double`
+    - `maxY: double`
+    - `stepY: double`
+    - `feedMovement: RelativeMovementModel`
+    - `milkMovement: RelativeMovementModel`
+    - `gapMovement: RelativeMovementModel`
+    - `gramPulseText: String`
+    - `infoText: String`
+  - `TrendChartPoint`
+    - `label: String`
+    - `milkValue: double`
+    - `feedValue: double`
+  - `RelativeMovementModel`
+    - `title: String`
+    - `percentage: String`
+    - `statusText: String`
+    - `icon: IconData`
+    - `iconColor: Color`
+    - `iconBgColor: Color`
+
+## EnterpriseImpactScreen
+- **Route Path**: `enterprise-impact`
+- **File**: `...\lib\features\portfolio\screens\enterprise_impact_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `EnterpriseImpactModel`
+    - `title: String`
+    - `subtitle: String`
+    - `keyImpactTitle: String`
+    - `keyImpactDescription: String`
+    - `keyImpactLevel: String`
+    - `factors: List<ImpactFactorModel>`
+    - `aiAnalysisText: String`
+    - `watchList: List<String>`
+    - `infoText: String`
+  - `ImpactFactorModel`
+    - `id: String`
+    - `title: String`
+    - `description: String`
+    - `statusText: String`
+    - `statusLevel: String`
+    - `icon: IconData`
+    - `trendIcon: IconData`
+    - `trendColor: Color`
+
+## BusinessBehaviourScreen
+- **Route Path**: `business-behaviour`
+- **File**: `...\lib\features\portfolio\screens\business_behaviour_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `BehaviourFactorModel`
+    - `id: String`
+    - `title: String`
+    - `description: String`
+    - `statusText: String`
+    - `icon: IconData`
+  - `BusinessBehaviourModel`
+    - `title: String`
+    - `subtitle: String`
+    - `factors: List<BehaviourFactorModel>`
+    - `aiInsightText: String`
+
+## CashBehaviourScreen
+- **Route Path**: `cash-behaviour`
+- **File**: `...\lib\features\portfolio\screens\cash_behaviour_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `BufferData`
+    - `title: String`
+    - `subtitle: String`
+    - `status: String`
+    - `dataPoints: List<ChartDataPoint>`
+    - `currentBuffer: String`
+    - `recommendedBuffer: String`
+    - `insightText: String`
+  - `ChartDataPoint`
+    - `label: String`
+    - `value1: double`
+  - `CashBehaviourModel`
+    - `title: String`
+    - `subtitle: String`
+    - `currentStatus: String`
+    - `inflowData: CashFlowData`
+    - `outflowData: CashFlowData`
+    - `bufferData: BufferData`
+    - `aiInsightTitle: String`
+    - `aiInsightDescription: String`
+  - `CashFlowData`
+    - `title: String`
+    - `subtitle: String`
+    - `status: String`
+    - `dataPoints: List<ChartDataPoint>`
+    - `averageValue: double`
+    - `averageLabel: String`
+    - `insightText: String`
+
+## BusinessExposureScreen
+- **Route Path**: `business-exposure`
+- **File**: `...\lib\features\portfolio\screens\business_exposure_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `BusinessExposureModel`
+    - `title: String`
+    - `subtitle: String`
+    - `exposureLevel: String`
+    - `exposureDescription: String`
+    - `exposureRiskText: String`
+    - `factors: List<ExposureFactorModel>`
+    - `aiAnalysisText: String`
+    - `infoText: String`
+  - `ExposureFactorModel`
+    - `id: String`
+    - `title: String`
+    - `description: String`
+    - `statusText: String`
+    - `statusLevel: String`
+    - `icon: IconData`
+
+## ClimateExposureExplanationScreen
+- **Route Path**: `climate-exposure-explanation`
+- **File**: `...\lib\features\portfolio\screens\climate_exposure_explanation_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `EvidenceModel`
+    - `imageUrl: String`
+    - `note: String`
+  - `ExplanationEvidenceModel`
+    - `id: String`
+    - `title: String`
+    - `description: String`
+    - `statusText: String`
+    - `icon: IconData`
+  - `ClimateExposureExplanationModel`
+    - `title: String`
+    - `subtitle: String`
+    - `aiExplanationText: String`
+    - `evidence: List<ExplanationEvidenceModel>`
+    - `whatThisMeansText: String`
+
+## ClimateImpactScreen
+- **Route Path**: `climate-impact`
+- **File**: `...\lib\features\portfolio\screens\climate_impact_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `ImpactMetricModel`
+    - `id: String`
+    - `title: String`
+    - `description: String`
+    - `statusText: String`
+    - `icon: IconData`
+  - `ClimateImpactModel`
+    - `title: String`
+    - `subtitle: String`
+    - `impactLevel: String`
+    - `impactDescription: String`
+    - `metrics: List<ImpactMetricModel>`
+    - `whatThisMeansText: String`
+
+## ClimateIntelligenceScreen
+- **Route Path**: `climate-intelligence`
+- **File**: `...\lib\features\portfolio\screens\climate_intelligence_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `ClimateIntelligenceModel`
+    - `title: String`
+    - `subtitle: String`
+    - `currentConditionTitle: String`
+    - `currentImpactLevel: String`
+    - `currentDescription: String`
+    - `nextPeriodStatus: String`
+    - `exposureLevel: String`
+    - `outlookTitle: String`
+    - `outlookSubtitle: String`
+    - `upcomingConditions: List<UpcomingConditionModel>`
+    - `overallImpactLevel: String`
+    - `overallImpactDescription: String`
+    - `infoText: String`
+
+## WeatherOutlookScreen
+- **Route Path**: `weather-outlook`
+- **File**: `...\lib\features\portfolio\screens\weather_outlook_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `ClimateIntelligenceModel`
+    - `title: String`
+    - `subtitle: String`
+    - `currentConditionTitle: String`
+    - `currentImpactLevel: String`
+    - `currentDescription: String`
+    - `nextPeriodStatus: String`
+    - `exposureLevel: String`
+    - `outlookTitle: String`
+    - `outlookSubtitle: String`
+    - `upcomingConditions: List<UpcomingConditionModel>`
+    - `overallImpactLevel: String`
+    - `overallImpactDescription: String`
+    - `infoText: String`
+  - `UpcomingConditionModel`
+    - `time: String`
+    - `condition: String`
+    - `impactLevel: String`
+
+## PriceDetailScreen
+- **Route Path**: `price-detail/:metricId`
+- **File**: `...\lib\features\portfolio\screens\price_detail_screen.dart`
+- **Parameters**: enterpriseId, metricId
+- **Data Models Used**:
+  - `PriceDetailModel`
+    - `title: String`
+    - `subtitle: String`
+    - `icon: IconData`
+    - `currentPrice: String`
+    - `pillText: String`
+    - `pillLevel: String`
+    - `comparedToText: String`
+    - `chartData: List<ChartPoint>`
+    - `minY: double`
+    - `maxY: double`
+    - `stepY: double`
+    - `trendText: String`
+    - `trendIcon: IconData`
+    - `trendColor: Color`
+    - `gramPulseText: String`
+    - `infoText: String`
+    - `lastUpdatedText: String`
+
+## BusinessHealthScreen
+- **Route Path**: `health`
+- **File**: `...\lib\features\portfolio\screens\business_health_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## FinancialHealthScreen
+- **Route Path**: `financial`
+- **File**: `...\lib\features\portfolio\screens\financial_health_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## FinancialIntelligenceScreen
+- **Route Path**: `intelligence`
+- **File**: `...\lib\features\portfolio\screens\financial_intelligence_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `FinancialIntelligenceModel`
+    - `currentCash: String`
+    - `cashStatusBadge: String`
+    - `cashStatusSubtitle: String`
+    - `expectedInflow: String`
+    - `expectedOutflow: String`
+    - `upcomingRepayment: String`
+    - `nextReviewDate: String`
+    - `cashOutlookStatus: String`
+    - `cashOutlookSubtitle: String`
+    - `incomeAmount: String`
+    - `expensesAmount: String`
+
+## IncomeScreen
+- **Route Path**: `income`
+- **File**: `...\lib\features\portfolio\screens\income_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `IncomeModel`
+    - `sourceName: String`
+    - `expectedAmount: String`
+    - `period: String`
+    - `trendBadge: String`
+    - `trendData: List<double>`
+    - `latestAmount: String`
+    - `latestDate: String`
+    - `history: List<RecentCollection>`
+    - `aiExplanation: String`
+
+## ExpensesScreen
+- **Route Path**: `expenses`
+- **File**: `...\lib\features\portfolio\screens\expenses_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `ExpensesModel`
+    - `totalExpenses: String`
+    - `period: String`
+    - `categories: List<ExpenseCategory>`
+    - `keyInsight: String`
+
+## CashPositionScreen
+- **Route Path**: `cash-position`
+- **File**: `...\lib\features\portfolio\screens\cash_position_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `FinancialIntelligenceModel`
+    - `currentCash: String`
+    - `cashStatusBadge: String`
+    - `cashStatusSubtitle: String`
+    - `expectedInflow: String`
+    - `expectedOutflow: String`
+    - `upcomingRepayment: String`
+    - `nextReviewDate: String`
+    - `cashOutlookStatus: String`
+    - `cashOutlookSubtitle: String`
+    - `incomeAmount: String`
+    - `expensesAmount: String`
+
+## CashFlowScreen
+- **Route Path**: `cash-flow`
+- **File**: `...\lib\features\finance\screens\cash_flow_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `CashFlowData`
+    - `title: String`
+    - `subtitle: String`
+    - `status: String`
+    - `dataPoints: List<ChartDataPoint>`
+    - `averageValue: double`
+    - `averageLabel: String`
+    - `insightText: String`
+  - `CashFlowDataPoint`
+    - `month: String`
+    - `inflow: double`
+    - `outflow: double`
+    - `isTighterMonth: bool`
+  - `CashFlowModel`
+    - `avgInflow: String`
+    - `avgOutflow: String`
+    - `chartData: List<CashFlowDataPoint>`
+    - `aiInsight: String`
+    - `summary: CashFlowSummary`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `MockData`
+
+## CashForecastScreen
+- **Route Path**: `cash-forecast`
+- **File**: `...\lib\features\portfolio\screens\cash_forecast_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `CashForecastDataPoint`
+    - `month: String`
+    - `inflowStr: String`
+    - `outflowStr: String`
+    - `closingStr: String`
+    - `inflow: double`
+    - `outflow: double`
+    - `closing: double`
+    - `isDangerMonth: bool`
+  - `CashForecastModel`
+    - `aiInsight: String`
+    - `data: List<CashForecastDataPoint>`
+
+## ForecastExplanationScreen
+- **Route Path**: `cash-forecast-explanation`
+- **File**: `...\lib\features\portfolio\screens\forecast_explanation_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `ForecastExplanationModel`
+    - `targetMonth: String`
+    - `summaryText: String`
+    - `aiExplanation: String`
+    - `factors: List<ExplanationFactor>`
+
+## ObligationsScreen
+- **Route Path**: `obligations`
+- **File**: `...\lib\features\portfolio\screens\obligations_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `ObligationsModel`
+    - `summary: ObligationsSummary`
+    - `obligations: List<Obligation>`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## BusinessHealthTrajectoryScreen
+- **Route Path**: `history`
+- **File**: `...\lib\features\portfolio\screens\business_health_trajectory_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## UnderstandHealthScreen
+- **Route Path**: `understand`
+- **File**: `...\lib\features\portfolio\screens\understand_health_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## EnterpriseFullScreen
+- **Route Path**: `full`
+- **File**: `...\lib\features\portfolio\screens\enterprise_full_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## RiskTimelineScreen
+- **Route Path**: `risk`
+- **File**: `...\lib\features\insights\screens\risk_timeline_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `RiskTimelineItem`
+    - `period: String`
+    - `category: String`
+    - `title: String`
+    - `description: String`
+    - `severity: String`
+
+## AiRecommendationsScreen
+- **Route Path**: `recommendations`
+- **File**: `...\lib\features\insights\screens\ai_recommendations_screen.dart`
+- **Parameters**: enterpriseId
+- **Data Models Used**:
+  - `MockData`
+  - `RecommendationModel`
+    - `id: String`
+    - `detectedSignal: String`
+    - `expectedImpact: String`
+    - `recommendedIntervention: String`
+    - `urgency: String`
+    - `dataConfidence: String`
+    - `enterpriseId: String`
+  - `VisitModel`
+    - `id: String`
+    - `enterpriseName: String`
+    - `location: String`
+    - `time: String`
+    - `riskLevel: String`
+    - `enterpriseId: String`
+    - `addedRecommendations: List<String>`
+    - `observations: List<String>`
+    - `overallRating: String`
+
+## HomeScreen
+- **Route Path**: `/home`
+- **File**: `...\lib\features\home\screens\home_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `MockData`
+
+## PortfolioScreen
+- **Route Path**: `/portfolio`
+- **File**: `...\lib\features\portfolio\screens\portfolio_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+
+## RiskEarlyWarningScreen
+- **Route Path**: `/risk-early-warning`
+- **File**: `...\lib\features\insights\screens\risk_early_warning_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `InterventionItem`
+    - `id: String`
+    - `name: String`
+    - `enterpriseType: String`
+    - `location: String`
+    - `riskIssue: String`
+    - `timeframe: String`
+    - `priority: RiskGroup`
+
+## EvidenceScreen
+- **Route Path**: `evidence/:id`
+- **File**: `...\lib\features\insights\screens\evidence_screen.dart`
+- **Parameters**: id
+- **Data Models Used**:
+  - `EvidenceItem`
+    - `icon: IconData`
+    - `themeColor: Color`
+    - `backgroundColor: Color`
+    - `title: String`
+    - `sourceLabel: String`
+    - `rightTopText: String`
+    - `rightTopColor: Color`
+    - `rightBottomText: String`
+    - `hasStableDot: bool`
+  - `EvidenceData`
+    - `enterpriseId: String`
+    - `name: String`
+    - `sector: String`
+    - `location: String`
+    - `riskBadgeText: String`
+    - `riskBadgeColor: Color`
+    - `riskBadgeBgColor: Color`
+    - `evidenceItems: List<EvidenceItem>`
+    - `actionPath: String`
+
+## InsightsRecommendedActionScreen
+- **Route Path**: `recommended-action/:id`
+- **File**: `...\lib\features\insights\screens\recommended_action_screen.dart`
+- **Parameters**: id
+- **Data Models Used**:
+  - `RecommendedActionData`
+    - `enterpriseId: String`
+    - `name: String`
+    - `sector: String`
+    - `location: String`
+    - `riskBadgeText: String`
+    - `riskBadgeColor: Color`
+    - `riskBadgeBgColor: Color`
+    - `recommendation: ActionRecommendation`
+    - `reasons: List<ActionReason>`
+    - `outcomeText: String`
+    - `deferActionPath: String`
+    - `createInterventionPath: String`
+
+## VisitPlannerScreen
+- **Route Path**: `/visits`
+- **File**: `...\lib\features\visits\screens\visit_planner_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `MockData`
+  - `VisitModel`
+    - `id: String`
+    - `enterpriseName: String`
+    - `location: String`
+    - `time: String`
+    - `riskLevel: String`
+    - `enterpriseId: String`
+    - `addedRecommendations: List<String>`
+    - `observations: List<String>`
+    - `overallRating: String`
+
+## VisitChecklistScreen
+- **Route Path**: `checklist/:id`
+- **File**: `...\lib\features\visits\screens\visit_checklist_screen.dart`
+- **Parameters**: visitId
+- **Data Models Used**:
+  - `MockData`
+  - `EnterpriseModel`
+    - `id: String`
+    - `name: String`
+    - `location: String`
+    - `sector: String`
+    - `since: String`
+    - `revenue: double`
+    - `status: String`
+    - `bankBalance: String`
+    - `accountFlow30Day: String`
+    - `liquidityCoverage: String`
+    - `lowestProjectedBalance: String`
+    - `outlookString: String`
+    - `nextEventString: String`
+    - `cashDeficitProjected: bool`
+    - `shortfallAmount: double`
+    - `keyDrivers: List<String>`
+    - `cashFlowStatus: String`
+    - `obligationCoverage: String`
+    - `marketSignal: String`
+    - `climateAlert: String`
+    - `intelligenceFacts: List<String>`
+    - `suggestedAttention: String`
+    - `compositeIndicators: List<CompositeIndicator>`
+    - `financialIntelligence: FinancialIntelligenceModel`
+    - `incomeData: IncomeModel`
+    - `expensesData: ExpensesModel`
+    - `cashFlowData: CashFlowModel`
+    - `cashForecastData: CashForecastModel`
+    - `obligationsData: ObligationsModel`
+    - `forecastExplanationData: ForecastExplanationModel`
+    - `loanAmount: double`
+    - `nextEmiAmount: double`
+    - `nextEmiDays: int`
+  - `VisitModel`
+    - `id: String`
+    - `enterpriseName: String`
+    - `location: String`
+    - `time: String`
+    - `riskLevel: String`
+    - `enterpriseId: String`
+    - `addedRecommendations: List<String>`
+    - `observations: List<String>`
+    - `overallRating: String`
+
+## AddObservationScreen
+- **Route Path**: `observation`
+- **File**: `...\lib\features\visits\screens\add_observation_screen.dart`
+- **Parameters**: visitId
+- **Data Models Used**:
+  - `MockData`
+  - `VisitModel`
+    - `id: String`
+    - `enterpriseName: String`
+    - `location: String`
+    - `time: String`
+    - `riskLevel: String`
+    - `enterpriseId: String`
+    - `addedRecommendations: List<String>`
+    - `observations: List<String>`
+    - `overallRating: String`
+
+## CapturePhotosScreen
+- **Route Path**: `photos`
+- **File**: `...\lib\features\visits\screens\capture_photos_screen.dart`
+- **Parameters**: visitId
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## VoiceNoteScreen
+- **Route Path**: `voice`
+- **File**: `...\lib\features\visits\screens\voice_note_screen.dart`
+- **Parameters**: visitId
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## VisitSummaryScreen
+- **Route Path**: `summary`
+- **File**: `...\lib\features\visits\screens\visit_summary_screen.dart`
+- **Parameters**: visitId
+- **Data Models Used**:
+  - `MockData`
+  - `VisitModel`
+    - `id: String`
+    - `enterpriseName: String`
+    - `location: String`
+    - `time: String`
+    - `riskLevel: String`
+    - `enterpriseId: String`
+    - `addedRecommendations: List<String>`
+    - `observations: List<String>`
+    - `overallRating: String`
+
+## AlertsScreen
+- **Route Path**: `/alerts`
+- **File**: `...\lib\features\alerts\screens\alerts_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `MockData`
+  - `AlertModel`
+    - `id: String`
+    - `title: String`
+    - `subtitle: String`
+    - `severity: String`
+    - `time: String`
+    - `location: String`
+
+## ProfileScreen
+- **Route Path**: `/profile`
+- **File**: `...\lib\features\profile\screens\profile_screen.dart`
+- **Parameters**: None
+- **Data Models Used**:
+  - `MockData`
+
+## AiAssistantScreen
+- **Route Path**: `/ai-assistant`
+- **File**: `...\lib\features\ai_assistant\screens\ai_assistant_screen.dart`
+- **Parameters**: initialMessage
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+
+## ReportsScreen
+- **Route Path**: `/reports`
+- **File**: `...\lib\features\reports\screens\reports_screen.dart`
+- **Parameters**: None
+- **Data Models Used**: None explicitly detected (might use generic/primitive state).
+

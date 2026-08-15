@@ -1,0 +1,82 @@
+{
+  "disparate_impact": {
+    "ratio": 0.4089,
+    "max_rate": 0.2942,
+    "min_rate": 0.1203,
+    "max_group": "30-50",
+    "min_group": ">50",
+    "passes": false,
+    "di_low": 0.8,
+    "di_high": 1.25
+  },
+  "equal_opportunity": {
+    "eod": 0.3338,
+    "max_tpr": 0.6953,
+    "min_tpr": 0.3615,
+    "max_group": "30-50",
+    "min_group": "<30"
+  },
+  "equalized_odds": {
+    "tpr_difference": 0.3338,
+    "fpr_difference": 0.1552,
+    "max_eod": 0.3338,
+    "equalized_odds_passes": false
+  },
+  "demographic_parity": {
+    "dpd": 0.1739,
+    "max_rate": 0.2942,
+    "min_rate": 0.1203,
+    "max_group": "30-50",
+    "min_group": ">50"
+  },
+  "overall_passes": false,
+  "per_group": [
+    {
+      "Group": "30-50",
+      "Size": 23868,
+      "BaseRate": 0.0854,
+      "SelectionRate": 0.2942,
+      "Accuracy": 0.7392,
+      "TPR": 0.6953,
+      "FPR": 0.2567,
+      "TNR": 0.7433,
+      "FNR": 0.3047,
+      "PPV": 0.2018,
+      "NPV": 0.9631,
+      "AUC": 0.7921
+    },
+    {
+      "Group": "<30",
+      "Size": 6533,
+      "BaseRate": 0.116,
+      "SelectionRate": 0.1362,
+      "Accuracy": 0.8316,
+      "TPR": 0.3615,
+      "FPR": 0.1067,
+      "TNR": 0.8933,
+      "FNR": 0.6385,
+      "PPV": 0.3079,
+      "NPV": 0.9142,
+      "AUC": 0.7472
+    },
+    {
+      "Group": ">50",
+      "Size": 15726,
+      "BaseRate": 0.059,
+      "SelectionRate": 0.1203,
+      "Accuracy": 0.8703,
+      "TPR": 0.4203,
+      "FPR": 0.1015,
+      "TNR": 0.8985,
+      "FNR": 0.5797,
+      "PPV": 0.2061,
+      "NPV": 0.9611,
+      "AUC": 0.7657
+    }
+  ],
+  "thresholds": {
+    "30-50": 0.51,
+    "<30": 0.34,
+    ">50": 0.3
+  }
+}

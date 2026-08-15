@@ -1,0 +1,17 @@
+{
+  "model": "bfs_val",
+  "threshold": 0.5,
+  "auc": 0.686,
+  "ks": 0.277,
+  "gini": 0.372,
+  "brier": 0.2165,
+  "average_precision": 0.5584,
+  "accuracy": 0.648,
+  "precision": 0.6613,
+  "recall": 0.1444,
+  "f1": 0.237,
+  "tp": 82,
+  "tn": 890,
+  "fp": 42,
+  "fn": 486
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "ext_source_mean",
+    "mean_shap": 0.054307,
+    "reason": null
+  },
+  {
+    "feature": "ext_source_product",
+    "mean_shap": 0.011571,
+    "reason": null
+  },
+  {
+    "feature": "CNT_CHILDREN",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "AMT_INCOME_TOTAL",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "AMT_CREDIT",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "AMT_ANNUITY",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "CNT_FAM_MEMBERS",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "REGION_RATING_CLIENT",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "REG_CITY_NOT_WORK_CITY",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "LIVE_CITY_NOT_WORK_CITY",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_1",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_2",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "EXT_SOURCE_3",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "AMT_REQ_CREDIT_BUREAU_MON",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "AMT_REQ_CREDIT_BUREAU_QRT",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "AMT_REQ_CREDIT_BUREAU_YEAR",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "age",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "years_employed",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "debt_income_ratio",
+    "mean_shap": 0.0,
+    "reason": null
+  },
+  {
+    "feature": "annuity_income_ratio",
+    "mean_shap": 0.0,
+    "reason": null
+  }
+]

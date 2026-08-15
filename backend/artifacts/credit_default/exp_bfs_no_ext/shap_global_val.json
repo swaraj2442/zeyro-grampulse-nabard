@@ -1,0 +1,102 @@
+[
+  {
+    "feature": "age",
+    "mean_shap": 0.303661,
+    "reason": null
+  },
+  {
+    "feature": "annuity_to_credit_ratio",
+    "mean_shap": 0.195113,
+    "reason": "High loan repayment burden"
+  },
+  {
+    "feature": "ltv_ratio",
+    "mean_shap": 0.187395,
+    "reason": null
+  },
+  {
+    "feature": "bureau_credit_history_days",
+    "mean_shap": 0.12977,
+    "reason": null
+  },
+  {
+    "feature": "bureau_active_loans",
+    "mean_shap": 0.116486,
+    "reason": null
+  },
+  {
+    "feature": "bureau_total_debt",
+    "mean_shap": 0.107864,
+    "reason": null
+  },
+  {
+    "feature": "bureau_max_overdue",
+    "mean_shap": 0.099628,
+    "reason": null
+  },
+  {
+    "feature": "days_last_phone_change",
+    "mean_shap": 0.099319,
+    "reason": null
+  },
+  {
+    "feature": "REGION_RATING_CLIENT",
+    "mean_shap": 0.097581,
+    "reason": null
+  },
+  {
+    "feature": "owns_car",
+    "mean_shap": 0.092662,
+    "reason": null
+  },
+  {
+    "feature": "NAME_EDUCATION_TYPE_Higher education",
+    "mean_shap": 0.086464,
+    "reason": null
+  },
+  {
+    "feature": "CODE_GENDER_F",
+    "mean_shap": 0.076417,
+    "reason": null
+  },
+  {
+    "feature": "years_employed",
+    "mean_shap": 0.073365,
+    "reason": null
+  },
+  {
+    "feature": "days_id_publish",
+    "mean_shap": 0.070447,
+    "reason": null
+  },
+  {
+    "feature": "NAME_FAMILY_STATUS_Married",
+    "mean_shap": 0.067108,
+    "reason": null
+  },
+  {
+    "feature": "CODE_GENDER_M",
+    "mean_shap": 0.063935,
+    "reason": null
+  },
+  {
+    "feature": "AMT_ANNUITY",
+    "mean_shap": 0.062299,
+    "reason": null
+  },
+  {
+    "feature": "income_lifetime_wealth",
+    "mean_shap": 0.056331,
+    "reason": "Low lifetime accumulated wealth"
+  },
+  {
+    "feature": "bureau_days_since_update",
+    "mean_shap": 0.052612,
+    "reason": null
+  },
+  {
+    "feature": "bureau_utilisation",
+    "mean_shap": 0.051938,
+    "reason": null
+  }
+]

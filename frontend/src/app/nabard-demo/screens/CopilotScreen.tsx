@@ -149,62 +149,6 @@ export default function CopilotScreen({ navigateTo }: Props) {
         </div>
       </div>
 
-      {/* 2. Top Stats */}
-      <div className="grid grid-cols-4 gap-4">
-        
-        {/* Status */}
-        <div className="bg-white border border-gray-100 rounded-xl p-4 flex items-center gap-4 shadow-sm">
-           <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center shrink-0 border border-green-100">
-             <Activity size={20} className="text-green-600" />
-           </div>
-           <div>
-             <div className="text-[11px] font-semibold text-gray-500 mb-1">AI Status</div>
-             <div className="flex items-center gap-1.5 mb-1">
-                <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                <span className="text-[14px] font-bold text-gray-900 leading-none">Active</span>
-             </div>
-             <div className="text-[11px] text-gray-500">All systems operational</div>
-           </div>
-        </div>
-
-        {/* Models Active */}
-        <div className="bg-white border border-gray-100 rounded-xl p-4 flex items-center gap-4 shadow-sm">
-           <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center shrink-0 border border-purple-100">
-             <Box size={20} className="text-purple-600" />
-           </div>
-           <div>
-             <div className="text-[11px] font-semibold text-gray-500 mb-1">Models Active</div>
-             <div className="text-[16px] font-bold text-gray-900 leading-none mb-1">7 / 7</div>
-             <div className="text-[11px] text-gray-500">Latest models deployed</div>
-           </div>
-        </div>
-
-        {/* Portfolio Context */}
-        <div className="bg-white border border-gray-100 rounded-xl p-4 flex items-center gap-4 shadow-sm">
-           <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center shrink-0 border border-green-100">
-             <Database size={20} className="text-green-600" />
-           </div>
-           <div>
-             <div className="text-[11px] font-semibold text-gray-500 mb-1">Portfolio Context</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-1">2,458 <span className="text-[12px] font-bold text-gray-600">Enterprises</span></div>
-             <div className="text-[11px] text-gray-500">Across 18 districts</div>
-           </div>
-        </div>
-
-        {/* Last Analysis */}
-        <div className="bg-white border border-gray-100 rounded-xl p-4 flex items-center gap-4 shadow-sm">
-           <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
-             <Clock size={20} className="text-blue-600" />
-           </div>
-           <div>
-             <div className="text-[11px] font-semibold text-gray-500 mb-1">Last Analysis</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-1">Today, 08:30 AM</div>
-             <div className="text-[11px] text-gray-500">Real-time data</div>
-           </div>
-        </div>
-
-      </div>
-
       {/* 3. Main Split Content */}
       <div className="grid grid-cols-12 gap-6 items-start">
         

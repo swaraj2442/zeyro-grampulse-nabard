@@ -102,7 +102,8 @@ export const apiClient = {
 
   // Overview
   getOverviewSummary: (filters?: any) => {
-    return Promise.resolve({ data: demoStore.getDemoOverviewKpis(filters), isLive: false, isFallback: true, dataMode: DATA_MODE });
+    const q = new URLSearchParams(filters || {});
+    return apiFetch(`/api/v1/portfolio/summary?${q}`, () => demoStore.getDemoOverviewKpis(filters));
   },
   getOverviewContext: () => {
     return Promise.resolve({ data: demoStore.getDemoOverviewContext(), isLive: false, isFallback: true, dataMode: DATA_MODE });
@@ -163,6 +164,10 @@ export const apiClient = {
 
   getDistrictHealth: () =>
     apiFetch('/api/v1/portfolio/districts', () => ({ districts: [] })),
+
+  getPortfolioForecastTimeseries: () =>
+    apiFetch('/api/v1/portfolio/forecast-timeseries', () => ({ growth: [], cashflow: [], risk: [], npa: [] })),
+
 
   // Enterprises
   getEnterprises: (params?: Record<string, string | number>) => {
@@ -253,7 +258,7 @@ export const apiClient = {
   },
     
   copilotSimulate: (payload: any) =>
-    apiFetch(`/api/v1/copilot/simulate`, () => demoStore.simulateCopilotScenario(payload), {
+    apiFetch(`/api/v1/copilot/simulate`, null, {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
     }),
 

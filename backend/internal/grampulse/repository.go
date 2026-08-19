@@ -670,3 +670,26 @@ func (r *Repository) UpsertWeatherCache(ctx context.Context, wc WeatherCacheRow)
 		FetchedAt:        sql.NullString{String: wc.FetchedAt, Valid: true},
 	})
 }
+
+func (r *Repository) GetAllCachedForecasts(ctx context.Context) ([]map[string]any, error) {
+	rows, err := r.dbConn.QueryContext(ctx, "SELECT forecast_json FROM forecast_cache")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var results []map[string]any
+	for rows.Next() {
+		var raw sql.NullString
+		if err := rows.Scan(&raw); err != nil {
+			continue
+		}
+		if raw.Valid {
+			var out map[string]any
+			if err := json.Unmarshal([]byte(raw.String), &out); err == nil {
+				results = append(results, out)
+			}
+		}
+	}
+	return results, nil
+}

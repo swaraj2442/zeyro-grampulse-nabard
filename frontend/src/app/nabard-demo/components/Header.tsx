@@ -67,7 +67,8 @@ export default function Header({ currentScreen, setCurrentScreen, navigateTo, on
   };
 
   const SCREENS_WITH_FILTERS: Screen[] = [
-    'overview', 'portfolio', 'explorer', 'intelligence_climate', 'intelligence_warning'
+    'overview', 'portfolio', 'explorer', 
+    'intelligence_climate', 'intelligence_warning', 'intelligence_market', 'intelligence_behaviour', 'intelligence_sector'
   ];
   const showFilters = SCREENS_WITH_FILTERS.includes(currentScreen);
 

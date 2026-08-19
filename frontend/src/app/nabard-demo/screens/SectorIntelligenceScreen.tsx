@@ -50,16 +50,16 @@ export default function SectorIntelligenceScreen({ navigateTo }: Props) {
   const MINI_CHART_DATA_2 = data?.miniCharts?.chart2 || data?.details?.MINI_CHART_DATA_2 || [];
   const MINI_CHART_DATA_3 = data?.miniCharts?.chart3 || data?.details?.MINI_CHART_DATA_3 || [];
 
-  const SECTOR_PERFORMANCE_DATA = data?.sectorPerformanceData || data?.details?.SECTOR_PERFORMANCE_DATA || [];
-  const MARKET_SHARE_DATA = data?.marketShareData || data?.details?.MARKET_SHARE_DATA || [];
-  const TREND_DATA = data?.trendData || data?.details?.TREND_DATA || [];
+  const SECTOR_PERFORMANCE_DATA = data?.sectorPerformanceData || data?.details?.PERFORMANCE_DATA || [];
+  const MARKET_SHARE_DATA = data?.marketShareData || data?.details?.PIE_DATA || [];
+  const TREND_DATA = data?.trendData || data?.details?.GROWTH_TREND_DATA || [];
   
   const SIGNALS = (data?.signals || data?.details?.SIGNALS || []).map((s: any) => ({
     ...s,
     icon: getIcon(s.iconType || s.icon)
   }));
   
-  const RECOMMENDATIONS = data?.recommendations || data?.details?.RECOMMENDATIONS || [];
+  const RECOMMENDATIONS = data?.recommendations || data?.details?.ACTIONS || [];
   const RISK_DATA = data?.riskData || data?.details?.RISK_DATA || [];
   const PERFORMANCE_DATA = data?.performanceData || data?.details?.PERFORMANCE_DATA || [];
   const GROWTH_TREND_DATA = data?.growthTrendData || data?.details?.GROWTH_TREND_DATA || [];

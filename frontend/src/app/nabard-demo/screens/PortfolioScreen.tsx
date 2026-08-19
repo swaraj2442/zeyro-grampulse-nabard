@@ -85,7 +85,7 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
   
   const { data: summary, isLoading: isLoadingSummary } = useQuery({
     queryKey: ['portfolioSummary', selectedState, selectedDistrict, dateRange],
-    queryFn: () => apiClient.getPortfolioSummary().then(res => res.data)
+    queryFn: () => apiClient.getPortfolioSummary({ state: selectedState, district: selectedDistrict }).then(res => res.data)
   });
 
   const { data: portfolioData, isLoading: isLoadingPortfolio } = useQuery({
@@ -95,7 +95,7 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
 
   const { data: sectorDistribution = [] } = useQuery({
     queryKey: ['portfolioSectors', selectedState, selectedDistrict, dateRange],
-    queryFn: () => apiClient.getSectorDistribution().then(res => res.data)
+    queryFn: () => apiClient.getSectorDistribution({ state: selectedState, district: selectedDistrict }).then(res => res.data)
   });
 
   const { data: portfolioTrends = [] } = useQuery({
@@ -201,11 +201,6 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
         
         {/* Card 1: Total Enterprises */}
         <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
-            <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <span className="text-[14px]">🏢</span>
-            </div>
-          </div>
           <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Total Enterprises</div>
           <div className="text-[20px] font-extrabold text-gray-900 mb-1">3,250</div>
           <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600">
@@ -215,11 +210,6 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
 
         {/* Card 2: Portfolio Health Score */}
         <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
-            <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <span className="text-[14px]">💚</span>
-            </div>
-          </div>
           <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Portfolio Health Score</div>
           <div className="text-[20px] font-extrabold text-gray-900 mb-1">81 <span className="text-[12px] text-gray-400 font-semibold">/100</span></div>
           <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600">
@@ -229,11 +219,6 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
 
         {/* Card 3: At Risk (Next 60 Days) */}
         <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
-            <div className="w-7 h-7 rounded-lg bg-orange-50 text-orange-500 flex items-center justify-center">
-              <AlertTriangle size={14} />
-            </div>
-          </div>
           <div className="text-[10px] font-semibold text-gray-500 mb-0.5">At Risk (Next 60 Days)</div>
           <div className="text-[20px] font-extrabold text-gray-900 mb-1">18</div>
           <div className="flex items-center gap-1 text-[10px] font-bold text-red-500">
@@ -243,11 +228,6 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
 
         {/* Card 4: Forecast NPA (Next 90 Days) */}
         <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
-            <div className="w-7 h-7 rounded-lg bg-red-50 text-red-500 flex items-center justify-center">
-              <ShieldAlert size={14} />
-            </div>
-          </div>
           <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Forecast NPA (Next 90 Days)</div>
           <div className="text-[20px] font-extrabold text-gray-900 mb-1">2.7%</div>
           <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600">
@@ -257,11 +237,6 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
 
         {/* Card 5: Cash-flow Deficit (Next 60 Days) */}
         <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
-            <div className="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
-              <Wallet size={14} />
-            </div>
-          </div>
           <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Cash-flow Deficit (Next 60 Days)</div>
           <div className="text-[20px] font-extrabold text-gray-900 mb-1">₹2.48 Cr</div>
           <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600">
@@ -271,11 +246,6 @@ export default function PortfolioScreen({ navigateTo }: PortfolioScreenProps) {
 
         {/* Card 6: Interventions Pending */}
         <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-3">
-            <div className="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
-              <span className="text-[14px]">👥</span>
-            </div>
-          </div>
           <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Interventions Pending</div>
           <div className="text-[20px] font-extrabold text-gray-900 mb-1">27</div>
           <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600">

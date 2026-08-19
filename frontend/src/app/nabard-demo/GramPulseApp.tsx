@@ -33,16 +33,7 @@ export default function GramPulseApp() {
   const handleLogin = (role: string) => {
     setUserRole(role);
     setIsLoggedIn(true);
-
-    if (role === 'Regional Manager') {
-      navigateTo('overview');
-    } else if (role === 'Field Officer') {
-      navigateTo('explorer');
-    } else if (role === 'Enterprise Owner') {
-      navigateTo('twin', 'ENT-00124');
-    } else {
-      navigateTo('overview');
-    }
+    navigateTo('overview');
   };
 
   if (!isLoggedIn) {

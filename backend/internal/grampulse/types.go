@@ -306,3 +306,18 @@ type HealthResponse struct {
 	WeatherFeed     string `json:"weatherFeed"`
 	MarketFeed      string `json:"marketFeed"`
 }
+
+type PortfolioForecastDataPoint struct {
+	Day      string   `json:"day"`
+	Actual   *float64 `json:"actual,omitempty"`
+	Forecast *float64 `json:"forecast,omitempty"`
+	Lower    *float64 `json:"lower,omitempty"`
+	Upper    *float64 `json:"upper,omitempty"`
+}
+
+type PortfolioForecastTimeseriesResponse struct {
+	Growth   []PortfolioForecastDataPoint `json:"growth"`
+	Cashflow []PortfolioForecastDataPoint `json:"cashflow"`
+	Risk     []PortfolioForecastDataPoint `json:"risk"`
+	Npa      []PortfolioForecastDataPoint `json:"npa"`
+}

@@ -46,6 +46,7 @@ func (h *Handler) RegisterRoutes(mux *http.ServeMux) {
 	// Auth & User
 	mux.HandleFunc("POST /api/v1/auth/login", h.demoLogin)
 	mux.HandleFunc("GET /api/v1/user/profile", h.userProfile)
+	mux.HandleFunc("POST /api/v1/copilot/simulate", h.copilotSimulate)
 
 	// Intelligence
 	mux.HandleFunc("GET /api/v1/intelligence/early-warning/kpis", h.earlyWarningKPIs)
@@ -54,6 +55,7 @@ func (h *Handler) RegisterRoutes(mux *http.ServeMux) {
 
 	// Portfolio
 	mux.HandleFunc("GET /api/v1/portfolio/summary", h.portfolioSummary)
+	mux.HandleFunc("GET /api/v1/portfolio/forecast-timeseries", h.portfolioForecastTimeseries)
 	mux.HandleFunc("GET /api/v1/portfolio/top-risk", h.topRisk)
 	mux.HandleFunc("GET /api/v1/portfolio/cluster-alerts", h.clusterAlerts)
 	mux.HandleFunc("GET /api/v1/portfolio/risk-distribution", h.riskDistribution)
@@ -412,7 +414,25 @@ func (h *Handler) underwrite(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, result)
 }
 
-// ── Portfolio handlers ────────────────────────────────────────────────────────
+func (h *Handler) portfolioForecastTimeseries(w http.ResponseWriter, r *http.Request) {
+	q := r.URL.Query()
+	district := q.Get("district")
+	sector := q.Get("sector")
+	if district == "All Districts" {
+		district = ""
+	}
+	if sector == "All Sectors" {
+		sector = ""
+	}
+	resp, err := h.svc.GetPortfolioForecastTimeseries(r.Context(), district, sector)
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	writeJSON(w, http.StatusOK, resp)
+}
+
+// ── Portfolio ─────────────────────────────────────────────────────────────────
 
 func (h *Handler) portfolioSummary(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
@@ -505,48 +525,32 @@ func (h *Handler) riskDistribution(w http.ResponseWriter, r *http.Request) {
 		sector = ""
 	}
 
-	overrides, _ := h.svc.repo.GetAllRiskAssessments(r.Context())
-	bySector := make(map[string]map[string]any)
-	byDistrict := make(map[string]map[string]any)
+	bySector := make(map[string]map[string]int)
+	byDistrict := make(map[string]map[string]int)
 	enterprises, _ := h.svc.ListEnterprises(r.Context(), sector, district, "", "", "id", "asc", 9999, 0)
 	for _, e := range enterprises {
 		rl := e.RiskLevel
-		sID := makeID("SECT", e.Sector)
-		dID := makeID("DIST", e.District)
-		
-		if _, ok := bySector[sID]; !ok {
-			bySector[sID] = make(map[string]any)
-			bySector[sID]["sectorId"] = sID
-			bySector[sID]["sector"] = e.Sector
-			bySector[sID]["counts"] = make(map[string]int)
+		sName := e.Sector
+		dName := e.District
+		if sName == "" {
+			sName = "Other"
 		}
-		counts := bySector[sID]["counts"].(map[string]int)
-		counts[rl]++
-		bySector[sID]["counts"] = counts
+		if dName == "" {
+			dName = "Unknown"
+		}
 
-		if _, ok := byDistrict[dID]; !ok {
-			byDistrict[dID] = make(map[string]any)
-			byDistrict[dID]["districtId"] = dID
-			byDistrict[dID]["district"] = e.District
-			byDistrict[dID]["counts"] = make(map[string]int)
+		if _, ok := bySector[sName]; !ok {
+			bySector[sName] = make(map[string]int)
 		}
-		dCounts := byDistrict[dID]["counts"].(map[string]int)
-		dCounts[rl]++
-		byDistrict[dID]["counts"] = dCounts
-	}
-	_ = overrides
-	
-	// Convert maps to slices
-	var sectorList []any
-	for _, v := range bySector {
-		sectorList = append(sectorList, v)
-	}
-	var districtList []any
-	for _, v := range byDistrict {
-		districtList = append(districtList, v)
+		bySector[sName][rl]++
+
+		if _, ok := byDistrict[dName]; !ok {
+			byDistrict[dName] = make(map[string]int)
+		}
+		byDistrict[dName][rl]++
 	}
 	
-	writeJSON(w, http.StatusOK, map[string]any{"bySector": sectorList, "byDistrict": districtList})
+	writeJSON(w, http.StatusOK, map[string]any{"bySector": bySector, "byDistrict": byDistrict})
 }
 
 func (h *Handler) forecastExposure(w http.ResponseWriter, r *http.Request) {
@@ -1051,3 +1055,38 @@ func (h *Handler) getEnterpriseLoans(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+
+func (h *Handler) copilotSimulate(w http.ResponseWriter, r *http.Request) {
+	var input struct {
+		ScenarioType  string `json:"scenarioType"`
+		Variables     struct {
+			RainfallDeviation    int `json:"rainfallDeviation"`
+			TemperatureIncrease  int `json:"temperatureIncrease"`
+			CropYieldImpact      int `json:"cropYieldImpact"`
+			CommodityPriceChange int `json:"commodityPriceChange"`
+			InputCostChange      int `json:"inputCostChange"`
+		} `json:"variables"`
+		HorizonMonths int    `json:"horizonMonths"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		// Fallback for old payloads
+		input.Variables.RainfallDeviation = -20
+		input.Variables.TemperatureIncrease = 2
+		input.Variables.CropYieldImpact = -15
+		input.Variables.CommodityPriceChange = -10
+		input.Variables.InputCostChange = 12
+	}
+
+	scenInput := ScenarioInput{
+		ScenarioType:  input.ScenarioType,
+		Variables:     input.Variables,
+		HorizonMonths: 12,
+	}
+
+	res, err := h.svc.CopilotSimulate(r.Context(), scenInput)
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	writeJSON(w, http.StatusOK, res)
+}

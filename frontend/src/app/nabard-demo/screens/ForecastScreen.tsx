@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import apiClient from '../services/apiClient';
 import { 
   AreaChart, Area, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, ReferenceLine, 
   ComposedChart
@@ -16,53 +17,23 @@ import { Screen } from '../GramPulseApp';
 
 // --- MOCK DATA ---
 
-const GROWTH_DATA = [
-  { day: 'Now', actual: 400 },
-  { day: '30D', actual: 480 },
-  { day: '90D', forecast: 600, lower: 550, upper: 650 },
-  { day: '180D', forecast: 850, lower: 750, upper: 980 },
-  { day: '365D', forecast: 1300, lower: 1100, upper: 1600 },
-];
-
-const CASHFLOW_DATA = [
-  { day: 'Now', actual: 80 },
-  { day: '30D', actual: 95 },
-  { day: '90D', forecast: 120, lower: 100, upper: 140 },
-  { day: '180D', forecast: 160, lower: 130, upper: 190 },
-  { day: '365D', forecast: 210, lower: 170, upper: 250 },
-];
-
-const RISK_DATA = [
-  { day: 'Now', actual: 65 },
-  { day: '30D', actual: 60 },
-  { day: '90D', forecast: 55, lower: 48, upper: 62 },
-  { day: '180D', forecast: 48, lower: 40, upper: 55 },
-  { day: '365D', forecast: 42, lower: 32, upper: 50 },
-];
-
-const NPA_DATA = [
-  { day: 'Now', actual: 4.2 },
-  { day: '30D', actual: 3.9 },
-  { day: '90D', forecast: 3.5, lower: 3.0, upper: 4.1 },
-  { day: '180D', forecast: 3.1, lower: 2.5, upper: 3.8 },
-  { day: '365D', forecast: 2.8, lower: 2.1, upper: 3.6 },
-];
 
 const CLIMATE_DATA = [
   { day: 'Now', actual: 40 },
-  { day: '30D', actual: 45 },
-  { day: '90D', forecast: 52, lower: 45, upper: 60 },
-  { day: '180D', forecast: 65, lower: 55, upper: 75 },
-  { day: '365D', forecast: 60, lower: 50, upper: 70 },
+  { day: '30D', actual: 42 },
+  { day: '90D', forecast: 50, lower: 45, upper: 65 },
+  { day: '180D', forecast: 65, lower: 55, upper: 80 },
+  { day: '365D', forecast: 55, lower: 45, upper: 70 },
 ];
 
 const INTERVENTION_DATA = [
-  { day: 'Now', actual: 5 },
-  { day: '30D', actual: 8 },
-  { day: '90D', forecast: 15, lower: 12, upper: 18 },
-  { day: '180D', forecast: 22, lower: 18, upper: 28 },
-  { day: '365D', forecast: 35, lower: 28, upper: 45 },
+  { day: 'Now', actual: 0 },
+  { day: '30D', actual: 5 },
+  { day: '90D', forecast: 12, lower: 8, upper: 16 },
+  { day: '180D', forecast: 18, lower: 14, upper: 24 },
+  { day: '365D', forecast: 22, lower: 18, upper: 28 },
 ];
+
 
 const TABLE_DATA = [
   { ent: 'Shivam Milk Producer Co.', dist: 'Satara', ch: 'Good', ph: 'Excellent', rp: 94, cf: '+ 18%', cf_dir: 'up', cr: 'Low', fc: 92, rec: 'Increase Credit Limit', rec_color: 'text-green-600', updated: 'May 25, 08:30 AM' },
@@ -125,21 +96,22 @@ function MiniForecastChart({ title, data, color, subtitle, isUp, why }: any) {
          <h3 className="text-[12px] font-bold text-gray-900">{title}</h3>
          <p className="text-[10px] text-gray-500">{subtitle}</p>
        </div>
-       <div className="flex-1 w-full min-h-[120px] mb-2">
-         <ResponsiveContainer width="100%" height="100%">
-           <ComposedChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: -25 }}>
+       <div className="flex-1 w-full h-[120px] mb-2">
+         
+           <ComposedChart width={260} height={120} data={data} margin={{ top: 5, right: 5, bottom: 5, left: -25 }}>
              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
              <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 9, fill: '#94a3b8' }} dy={10} />
-             <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 9, fill: '#94a3b8' }} />
+             <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 9, fill: '#94a3b8' }} tickFormatter={(v) => new Intl.NumberFormat('en-IN', { notation: "compact", maximumFractionDigits: 1 }).format(v)} />
              <Tooltip 
                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', fontSize: '10px', padding: '8px' }}
+               formatter={(value: any, name: string) => [new Intl.NumberFormat('en-IN', { maximumFractionDigits: 1 }).format(value), name]}
              />
-             <Area type="monotone" dataKey="upper" stroke="none" fill={color} fillOpacity={0.15} />
-             <Area type="monotone" dataKey="lower" stroke="none" fill="#ffffff" fillOpacity={1} />
-             <Line type="monotone" dataKey="actual" stroke={color} strokeWidth={2} dot={{ r: 3, fill: color, strokeWidth: 0 }} />
-             <Line type="monotone" dataKey="forecast" stroke={color} strokeWidth={2} strokeDasharray="3 3" dot={{ r: 3, fill: color, strokeWidth: 0 }} />
+             <Area type="monotone" connectNulls={true} dataKey="upper" stroke="none" fill={color} fillOpacity={0.15} />
+             <Area type="monotone" connectNulls={true} dataKey="lower" stroke="none" fill="#ffffff" fillOpacity={1} />
+             <Line type="monotone" connectNulls={true} dataKey="actual" stroke={color} strokeWidth={2} dot={{ r: 3, fill: color, strokeWidth: 0 }} />
+             <Line type="monotone" connectNulls={true} dataKey="forecast" stroke={color} strokeWidth={2} strokeDasharray="3 3" dot={{ r: 3, fill: color, strokeWidth: 0 }} />
            </ComposedChart>
-         </ResponsiveContainer>
+         
        </div>
        <div className="flex items-center justify-center gap-4 text-[9px] font-medium text-gray-500 mb-3">
          <div className="flex items-center gap-1"><div className={`w-3 h-0.5 border-t border-dashed`} style={{ borderColor: color }}/> Base Forecast</div>
@@ -200,6 +172,58 @@ function InsightCard({ icon: Icon, iconColor, iconBg, title, conf, desc, signals
 }
 
 export default function ForecastScreen({ enterprise, navigateTo }: Props) {
+  const [forecastData, setForecastData] = useState<any>({
+    growth: [], cashflow: [], risk: [], npa: []
+  });
+  const [loading, setLoading] = useState(true);
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
+
+  const handleGenerateReport = () => {
+    setIsGeneratingReport(true);
+    setTimeout(() => {
+      const headers = "Metric,Day,Actual,Forecast,Lower,Upper\n";
+      let csv = headers;
+      
+      if (forecastData && forecastData.growth) {
+        forecastData.growth.forEach(row => {
+          csv += `Portfolio Outstanding,${row.day},${row.actual != null ? Number(row.actual).toFixed(2) : ''},${row.forecast != null ? Number(row.forecast).toFixed(2) : ''},${row.lower != null ? Number(row.lower).toFixed(2) : ''},${row.upper != null ? Number(row.upper).toFixed(2) : ''}\n`;
+        });
+        forecastData.cashflow.forEach(row => {
+          csv += `Net Cashflow,${row.day},${row.actual != null ? Number(row.actual).toFixed(2) : ''},${row.forecast != null ? Number(row.forecast).toFixed(2) : ''},${row.lower != null ? Number(row.lower).toFixed(2) : ''},${row.upper != null ? Number(row.upper).toFixed(2) : ''}\n`;
+        });
+        forecastData.npa.forEach(row => {
+          csv += `Credit Stress,${row.day},${row.actual != null ? Number(row.actual).toFixed(2) : ''},${row.forecast != null ? Number(row.forecast).toFixed(2) : ''},${row.lower != null ? Number(row.lower).toFixed(2) : ''},${row.upper != null ? Number(row.upper).toFixed(2) : ''}\n`;
+        });
+      }
+      
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'portfolio_forecast_report.csv';
+      a.click();
+      window.URL.revokeObjectURL(url);
+      
+      setIsGeneratingReport(false);
+    }, 1500);
+  };
+
+  useEffect(() => {
+    apiClient.getPortfolioForecastTimeseries()
+      .then((res: any) => {
+        if (res && res.data) {
+          setForecastData(res.data);
+        } else {
+          setForecastData(res);
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
   const { state, dispatch } = useGramPulse();
   
   // Reusable Timeline Node
@@ -244,8 +268,8 @@ export default function ForecastScreen({ enterprise, navigateTo }: Props) {
           <button className="flex items-center gap-1.5 border border-gray-200 rounded-xl px-4 py-2 text-[12px] font-semibold text-gray-700 bg-white hover:bg-gray-50 shadow-sm transition-colors">
             <Download size={14} /> Export
           </button>
-          <button className="flex items-center gap-1.5 border border-transparent rounded-xl px-4 py-2 text-[12px] font-semibold text-white bg-[#0f766e] hover:bg-[#0f766e]/90 shadow-sm transition-colors">
-            <RefreshCw size={14} /> Generate Report
+          <button onClick={handleGenerateReport} disabled={isGeneratingReport} className="flex items-center gap-1.5 border border-transparent rounded-xl px-4 py-2 text-[12px] font-semibold text-white bg-[#0f766e] hover:bg-[#0f766e]/90 shadow-sm transition-colors disabled:opacity-75 disabled:cursor-not-allowed">
+            <RefreshCw size={14} className={isGeneratingReport ? 'animate-spin' : ''} /> {isGeneratingReport ? 'Generating...' : 'Generate Report'}
           </button>
         </div>
       </div>
@@ -304,10 +328,10 @@ export default function ForecastScreen({ enterprise, navigateTo }: Props) {
       <div>
         <h2 className="text-[14px] font-bold text-gray-900 mb-4 flex items-center gap-2">Forecast Dashboard</h2>
         <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar snap-x">
-          <div className="snap-start"><MiniForecastChart title="Portfolio Growth Forecast" subtitle="Projected portfolio value (₹ Cr)" data={GROWTH_DATA} color="#10b981" isUp={true} why={{ label: '+18.6% by 365 days' }} /></div>
-          <div className="snap-start"><MiniForecastChart title="Cashflow Forecast" subtitle="Net cash inflow (₹ Cr)" data={CASHFLOW_DATA} color="#3b82f6" isUp={true} why={{ label: 'Healthy liquidity expected' }} /></div>
-          <div className="snap-start"><MiniForecastChart title="Credit Risk Forecast" subtitle="Avg. Risk Score (0-100)" data={RISK_DATA} color="#8b5cf6" isUp={true} why={{ label: 'Risk score improving' }} /></div>
-          <div className="snap-start"><MiniForecastChart title="NPA Projection" subtitle="NPAs % of portfolio" data={NPA_DATA} color="#ef4444" isUp={true} why={{ label: 'NPA reduced to 2.8%' }} /></div>
+          <div className="snap-start"><MiniForecastChart title="Portfolio Growth Forecast" subtitle="Projected Portfolio Outstanding (₹ Cr)" data={forecastData.growth} color="#10b981" isUp={true} why={{ label: '+18.6% by 365 days' }} /></div>
+          <div className="snap-start"><MiniForecastChart title="Cashflow Forecast" subtitle="Net cash inflow (₹ Cr)" data={forecastData.cashflow} color="#3b82f6" isUp={true} why={{ label: 'Healthy liquidity expected' }} /></div>
+          <div className="snap-start"><MiniForecastChart title="Credit Risk Forecast" subtitle="Avg. Risk Score (0-100)" data={forecastData.risk} color="#8b5cf6" isUp={true} why={{ label: 'Risk score improving' }} /></div>
+          <div className="snap-start"><MiniForecastChart title="NPA Projection" subtitle="NPAs % of portfolio" data={forecastData.npa} color="#ef4444" isUp={true} why={{ label: 'NPA reduced to 2.8%' }} /></div>
           <div className="snap-start"><MiniForecastChart title="Climate Impact Forecast" subtitle="Climate Risk Index (0-100)" data={CLIMATE_DATA} color="#f59e0b" isUp={false} why={{ label: 'Moderate climate risk' }} /></div>
           <div className="snap-start"><MiniForecastChart title="Intervention Impact Forecast" subtitle="Expected improvement in outcomes" data={INTERVENTION_DATA} color="#14b8a6" isUp={true} why={{ label: '+22% improvement by 365D' }} /></div>
         </div>

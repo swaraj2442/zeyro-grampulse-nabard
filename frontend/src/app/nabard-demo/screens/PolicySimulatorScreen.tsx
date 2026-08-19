@@ -110,50 +110,6 @@ export default function PolicySimulatorScreen({ navigateTo }: Props) {
         </div>
       </div>
 
-      {/* 2. Top Stats */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-white border border-gray-100 rounded-xl p-3 flex items-center gap-3 shadow-sm">
-           <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0"><Briefcase size={16} className="text-emerald-600" /></div>
-           <div>
-             <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Base Portfolio</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-0.5">2,458 <span className="text-[10px] font-bold text-gray-500">Enterprises</span></div>
-             <div className="text-[9px] text-gray-400">Across 18 districts</div>
-           </div>
-        </div>
-        <div className="bg-white border border-gray-100 rounded-xl p-3 flex items-center gap-3 shadow-sm">
-           <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center shrink-0 border border-orange-100"><ShieldAlert size={16} className="text-orange-500" /></div>
-           <div>
-             <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Overall Risk (Base)</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-0.5">68 <span className="text-[10px] font-bold text-gray-500">/100</span></div>
-             <div className="text-[9px] text-gray-400">Moderate Risk</div>
-           </div>
-        </div>
-        <div className="bg-white border border-gray-100 rounded-xl p-3 flex items-center gap-3 shadow-sm">
-           <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center shrink-0"><Clock size={16} className="text-purple-600" /></div>
-           <div>
-             <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Avg. Repayment Rate (Base)</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-0.5">91%</div>
-             <div className="text-[9px] text-gray-400">Healthy</div>
-           </div>
-        </div>
-        <div className="bg-white border border-gray-100 rounded-xl p-3 flex items-center gap-3 shadow-sm">
-           <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100"><IndianRupee size={16} className="text-blue-600" /></div>
-           <div>
-             <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Expected Credit Loss (Base)</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-0.5">₹18.6 Cr</div>
-             <div className="text-[9px] text-gray-400">12.4% of portfolio</div>
-           </div>
-        </div>
-        <div className="bg-white border border-gray-100 rounded-xl p-3 flex items-center gap-3 shadow-sm">
-           <div className="w-10 h-10 rounded-full bg-pink-50 flex items-center justify-center shrink-0 border border-pink-100"><Sparkles size={16} className="text-pink-600" /></div>
-           <div>
-             <div className="text-[10px] font-semibold text-gray-500 mb-0.5">Policy Simulation</div>
-             <div className="text-[14px] font-bold text-gray-900 leading-none mb-0.5">Today, 08:30 AM</div>
-             <div className="text-[9px] text-gray-400">AI Model v3.2.1</div>
-           </div>
-        </div>
-      </div>
-
       {/* Main Two-Column Split */}
       <div className="grid grid-cols-12 gap-6 items-start">
         

@@ -348,7 +348,7 @@ export default function BehaviourIntelligenceScreen({ navigateTo }: Props) {
                       dataKey="value"
                       stroke="none"
                     >
-                      {SAVINGS_DISTRIBUTION_DATA.map((entry, index) => (
+                      {SAVINGS_DISTRIBUTION_DATA.map((entry: any, index: number) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
@@ -362,7 +362,7 @@ export default function BehaviourIntelligenceScreen({ navigateTo }: Props) {
 
               {/* Custom Legend List */}
               <div className="space-y-1.5 text-[10px]">
-                {SAVINGS_DISTRIBUTION_DATA.map((item, idx) => (
+                {SAVINGS_DISTRIBUTION_DATA.map((item: any, idx: number) => (
                   <div key={idx} className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }}></span>

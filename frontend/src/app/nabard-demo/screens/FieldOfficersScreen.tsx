@@ -1,6 +1,44 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const LeafletMap = dynamic(() => import('../components/LeafletMap'), { ssr: false });
+
+const STATES = [
+  { id: 'MH', geoName: 'Maharashtra', score: 68 },
+  { id: 'GJ', geoName: 'Gujarat', score: 78 },
+  { id: 'MP', geoName: 'Madhya Pradesh', score: 55 },
+  { id: 'KA', geoName: 'Karnataka', score: 45 },
+];
+const STATE_BY_GEONAME: Record<string, any> = {};
+STATES.forEach(s => { STATE_BY_GEONAME[s.geoName] = s; });
+
+const STATE_DISTRICTS: Record<string, any[]> = {
+  "Maharashtra": [
+    { name: 'Nashik', health: 42 },
+    { name: 'Pune', health: 65 },
+    { name: 'Aurangabad', health: 30 },
+    { name: 'Beed', health: 25 },
+  ]
+};
+
+function scoreToFill(score) {
+  if (score === undefined) return '#e2e8f0';
+  if (score >= 75) return '#22c55e';
+  if (score >= 60) return '#facc15';
+  if (score >= 40) return '#fb923c';
+  return '#ef4444';
+}
+
+function scoreToHover(score) {
+  if (score === undefined) return '#cbd5e1';
+  if (score >= 75) return '#16a34a'; 
+  if (score >= 60) return '#eab308'; 
+  if (score >= 40) return '#f97316'; 
+  return '#dc2626'; 
+}
+
 import { 
   Filter, Download, RefreshCw, User, MapPin, BellRing, CheckCircle, Shield, 
   Activity, Users, ListTodo, CheckSquare, Clock, Target, MoreVertical, 
@@ -65,7 +103,16 @@ const MiniSparkline = ({ data, color }: any) => (
   </div>
 );
 
+const ALL_INDIA = {
+  id: 'IN',
+  geoName: 'All India',
+  score: 68
+};
+
 export default function FieldOfficersScreen({ navigateTo }: Props) {
+  const [selected, setSelected] = useState(ALL_INDIA);
+  const [tooltip, setTooltip] = useState(null);
+
   return (
     <div className="space-y-6 pb-12 w-full max-w-[1600px] mx-auto overflow-x-hidden">
       
@@ -147,163 +194,108 @@ export default function FieldOfficersScreen({ navigateTo }: Props) {
          </div>
       </div>
 
-      {/* 2. Workforce KPIs */}
-      <div>
-         <h2 className="text-[13px] font-bold text-gray-900 mb-3">2. Workforce KPIs</h2>
-         <div className="grid grid-cols-6 gap-4">
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col justify-between h-[90px]">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 rounded bg-blue-50 flex items-center justify-center text-blue-600"><Users size={12} /></div>
-                     <span className="text-[10px] font-semibold text-gray-600">Total Officers</span>
-                  </div>
-               </div>
-               <div className="flex items-end justify-between">
-                  <div>
-                     <div className="text-[18px] font-bold text-gray-900 leading-none mb-1">284</div>
-                     <div className="text-[9px] font-semibold text-gray-400">Across 18 districts</div>
-                  </div>
-                  <MiniSparkline data={SPARKLINE_DATA_1} color="#a855f7" />
-               </div>
+      {/* 2. Field Officer Directory */}
+
+      {/* 2. Field Officer Directory */}
+      <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+         <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[13px] font-bold text-gray-900">2. Field Officer Directory</h2>
+            <div className="flex items-center gap-3">
+               <button className="flex items-center gap-1.5 text-[11px] font-bold text-gray-500 hover:text-gray-800"><Filter size={12}/> Filters</button>
+               <button className="flex items-center gap-1.5 text-[11px] font-bold text-gray-500 hover:text-gray-800"><Download size={12}/> Export</button>
+               <MoreVertical size={14} className="text-gray-400 cursor-pointer" />
             </div>
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col justify-between h-[90px]">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 rounded bg-emerald-50 flex items-center justify-center text-emerald-600"><User size={12} /></div>
-                     <span className="text-[10px] font-semibold text-gray-600">Active Today</span>
-                  </div>
-               </div>
-               <div className="flex items-end justify-between">
-                  <div>
-                     <div className="text-[18px] font-bold text-gray-900 leading-none mb-1">246</div>
-                     <div className="text-[9px] font-bold text-green-600">86.6% <span className="text-gray-400 font-semibold">of total</span></div>
-                  </div>
-                  <MiniSparkline data={SPARKLINE_DATA_2} color="#10b981" />
-               </div>
+         </div>
+         <table className="w-full text-left border-collapse">
+            <thead>
+               <tr className="border-b border-gray-200">
+                  
+                  <th className="py-2 text-[11px] font-bold text-gray-500">Officer Name</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500">Employee ID</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500">District</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Assigned Enterprises</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Active Tasks</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Visits Completed</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Productivity Score</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">SLA %</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500">Last Sync</th>
+                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Status</th>
+                  <th className="py-2 w-8"></th>
+               </tr>
+            </thead>
+            <tbody>
+               {DIRECTORY_DATA.map((row, i) => (
+                  <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                     
+                     <td className="py-3 flex items-center gap-2">
+                        <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt={row.name} className="w-6 h-6 rounded-full" />
+                        <span className="text-[11px] font-bold text-gray-900">{row.name}</span>
+                     </td>
+                     <td className="py-3 text-[11px] font-semibold text-gray-600">{row.id}</td>
+                     <td className="py-3 text-[11px] font-semibold text-gray-600">{row.dist}</td>
+                     <td className="py-3 text-[11px] font-semibold text-gray-600 text-center">{row.ent}</td>
+                     <td className="py-3 text-[11px] font-semibold text-gray-600 text-center">{row.tasks}</td>
+                     <td className="py-3 text-[11px] font-semibold text-gray-600 text-center">{row.vis}</td>
+                     <td className="py-3 text-[11px] font-bold text-green-600 text-center">{row.prod}</td>
+                     <td className="py-3 text-[11px] font-bold text-green-600 text-center">{row.sla}</td>
+                     <td className="py-3 text-[10px] font-medium text-gray-500">{row.sync}</td>
+                     <td className="py-3 text-center">
+                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${row.sColor}`}>{row.status}</span>
+                     </td>
+                     <td className="py-3 text-right"><MoreVertical size={14} className="text-gray-400 cursor-pointer hover:text-gray-700" /></td>
+                  </tr>
+               ))}
+            </tbody>
+         </table>
+         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-4">
+               
+               <span className="text-[11px] font-medium text-gray-400">Showing 1 to 7 of 246 officers</span>
             </div>
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col justify-between h-[90px]">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 rounded bg-blue-50 flex items-center justify-center text-blue-600"><ListTodo size={12} /></div>
-                     <span className="text-[10px] font-semibold text-gray-600">Avg. Visits Completed</span>
-                  </div>
-               </div>
-               <div className="flex items-end justify-between">
-                  <div>
-                     <div className="text-[18px] font-bold text-gray-900 leading-none mb-1">7.5</div>
-                     <div className="text-[9px] font-semibold text-gray-400">Per officer per day</div>
-                  </div>
-                  <MiniSparkline data={SPARKLINE_DATA_1} color="#3b82f6" />
-               </div>
-            </div>
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col justify-between h-[90px]">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 rounded bg-purple-50 flex items-center justify-center text-purple-600"><CheckSquare size={12} /></div>
-                     <span className="text-[10px] font-semibold text-gray-600">Tasks Completed</span>
-                  </div>
-               </div>
-               <div className="flex items-end justify-between">
-                  <div>
-                     <div className="text-[18px] font-bold text-gray-900 leading-none mb-1">2,138</div>
-                     <div className="text-[9px] font-bold text-green-600">↑ 12.4% <span className="text-gray-400 font-semibold">vs last week</span></div>
-                  </div>
-                  <MiniSparkline data={SPARKLINE_DATA_3} color="#a855f7" />
-               </div>
-            </div>
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col justify-between h-[90px]">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 rounded bg-orange-50 flex items-center justify-center text-orange-600"><Clock size={12} /></div>
-                     <span className="text-[10px] font-semibold text-gray-600">Avg. Response Time</span>
-                  </div>
-               </div>
-               <div className="flex items-end justify-between">
-                  <div>
-                     <div className="text-[18px] font-bold text-gray-900 leading-none mb-1">4.6 hrs</div>
-                     <div className="text-[9px] font-bold text-green-600">↓ 0.8 hrs <span className="text-gray-400 font-semibold">vs last week</span></div>
-                  </div>
-                  <MiniSparkline data={SPARKLINE_DATA_2} color="#f97316" />
-               </div>
-            </div>
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex flex-col justify-between h-[90px]">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 rounded bg-emerald-50 flex items-center justify-center text-emerald-600"><Target size={12} /></div>
-                     <span className="text-[10px] font-semibold text-gray-600">AI Performance Score</span>
-                  </div>
-               </div>
-               <div className="flex items-end justify-between">
-                  <div>
-                     <div className="text-[18px] font-bold text-gray-900 leading-none mb-1 flex items-baseline gap-1">78.4 <span className="text-[11px] font-bold text-gray-400">/100</span></div>
-                     <div className="text-[9px] font-bold text-green-600">↑ 4.6 pts <span className="text-gray-400 font-semibold">vs last week</span></div>
-                  </div>
-                  <MiniSparkline data={SPARKLINE_DATA_1} color="#10b981" />
+            <div className="flex items-center gap-1">
+               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-400 hover:bg-gray-50">{"<"}</button>
+               <button className="w-6 h-6 flex items-center justify-center border border-indigo-200 bg-indigo-50 rounded text-indigo-700 text-[10px] font-bold">1</button>
+               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50 text-[10px] font-bold">2</button>
+               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50 text-[10px] font-bold">3</button>
+               <span className="px-1 text-gray-400">...</span>
+               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50 text-[10px] font-bold">36</button>
+               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50">{">"}</button>
+               <div className="ml-2 flex items-center gap-1 border border-gray-200 rounded px-2 py-1 cursor-pointer hover:bg-gray-50">
+                  <span className="text-[10px] font-bold text-gray-600">10 / page</span>
+                  <span className="text-[8px] text-gray-400">▼</span>
                </div>
             </div>
          </div>
-      </div>
+      
 
       {/* Middle Split: Sections 3 & 4 */}
       <div className="grid grid-cols-12 gap-6 items-start">
-         
-         {/* 3. Officer Performance */}
-         <div className="col-span-7 bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-            <h2 className="text-[13px] font-bold text-gray-900 mb-4">3. Field Officer Performance Dashboard</h2>
-            <div className="grid grid-cols-4 gap-3">
-               {OFFICER_PROFILES.map((p, i) => (
-                  <div key={i} className="border border-gray-100 rounded-xl p-4 bg-gray-50/30">
-                     <div className="flex items-start gap-2 mb-4">
-                        <div className="w-8 h-8 rounded-full bg-gray-200 shrink-0 overflow-hidden">
-                           {/* Avatar placeholder */}
-                           <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt={p.name} className="w-full h-full object-cover" />
-                        </div>
-                        <div>
-                           <div className="text-[12px] font-bold text-gray-900 leading-tight">{p.name}</div>
-                           <div className="text-[10px] text-gray-500 mb-1">{p.loc}</div>
-                           <div className={`inline-block px-1.5 py-0.5 rounded text-[9px] font-bold ${p.color}`}>{p.status}</div>
-                        </div>
-                     </div>
-                     <div className="grid grid-cols-2 gap-y-2 gap-x-2 text-[10px] mb-4">
-                        <div className="text-gray-500 font-semibold">Enterprises</div><div className="text-right font-bold text-gray-900">{p.ent}</div>
-                        <div className="text-gray-500 font-semibold">Visits Today</div><div className="text-right font-bold text-gray-900">{p.vis}</div>
-                        <div className="text-gray-500 font-semibold">Open Tasks</div><div className="text-right font-bold text-gray-900">{p.tasks}</div>
-                     </div>
-                     <div className="space-y-3 mb-4">
-                        <div>
-                           <div className="flex items-center justify-between text-[9px] mb-1"><span className="text-gray-500 font-semibold">Productivity Score</span><span className="font-bold text-gray-900">{p.prod}</span></div>
-                           <div className="w-full h-1 bg-gray-200 rounded-full"><div className="h-full bg-blue-500 rounded-full" style={{width: `${p.prod}%`}}></div></div>
-                        </div>
-                        <div>
-                           <div className="flex items-center justify-between text-[9px] mb-1"><span className="text-gray-500 font-semibold">SLA Compliance</span><span className="font-bold text-gray-900">{p.sla}%</span></div>
-                           <div className="w-full h-1 bg-gray-200 rounded-full"><div className="h-full bg-green-500 rounded-full" style={{width: `${p.sla}%`}}></div></div>
-                        </div>
-                     </div>
-                     <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                        <span className="text-[10px] font-bold text-gray-700">AI Rating</span>
-                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center text-[10px] font-bold ${p.rColor}`}>{p.rating}</div>
-                     </div>
-                  </div>
-               ))}
-            </div>
-            <button className="text-[11px] font-bold text-indigo-700 mt-4 flex items-center gap-1 hover:text-indigo-800">
-               View all officers <ArrowRight size={12} />
-            </button>
-         </div>
 
-         {/* 4. Territory Coverage */}
-         <div className="col-span-5 bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-            <h2 className="text-[13px] font-bold text-gray-900 mb-4">4. Territory Coverage</h2>
+         {/* 3. Territory Coverage */}
+         <div className="col-span-12 bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+            <h2 className="text-[13px] font-bold text-gray-900 mb-4">3. Territory Coverage</h2>
             <div className="flex gap-4">
-               {/* Map Placeholder */}
-               <div className="w-[180px] shrink-0 flex flex-col items-center">
-                  <div className="w-full aspect-[4/5] bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center mb-4 relative overflow-hidden">
-                     {/* Simulating a heatmap with generic divs */}
-                     <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjZWVlIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+')]"></div>
-                     <div className="relative z-10 flex flex-col items-center gap-2">
-                        <Map size={32} className="text-gray-300" />
-                        <span className="text-[10px] font-semibold text-gray-400">Interactive Map View</span>
-                     </div>
+               {/* Map Component */}
+               <div className="flex-1 flex flex-col items-center pr-6">
+                  <div className="w-full h-[400px] bg-gray-50 border border-gray-100 rounded-xl relative overflow-hidden mb-4">
+                     <LeafletMap 
+                       selected={selected}
+                       setSelected={setSelected}
+                       setTooltip={setTooltip}
+                       scoreToFill={scoreToFill}
+                       scoreToHover={scoreToHover}
+                       STATES={STATES}
+                       STATE_BY_GEONAME={STATE_BY_GEONAME}
+                       STATE_DISTRICTS={STATE_DISTRICTS}
+                     />
+                     {tooltip && (
+                        <div 
+                          className="fixed bg-gray-900 text-white text-[10px] px-2 py-1 rounded shadow-lg pointer-events-none z-[9999] font-bold flex items-center gap-2"
+                          style={{ left: tooltip.x + 15, top: tooltip.y + 15 }}
+                        >
+                          {tooltip.content}
+                        </div>
+                     )}
                   </div>
                   <div className="flex items-center gap-3 text-[9px] font-bold">
                      <div className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-red-500"></div><span className="text-gray-600">High Risk</span></div>
@@ -349,7 +341,7 @@ export default function FieldOfficersScreen({ navigateTo }: Props) {
          
          {/* 5. AI Insights */}
          <div className="col-span-6 bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-            <h2 className="text-[13px] font-bold text-gray-900 mb-4">5. AI Workforce Insights</h2>
+            <h2 className="text-[13px] font-bold text-gray-900 mb-4">4. AI Workforce Insights</h2>
             <div className="flex items-center text-[10px] font-semibold text-gray-400 border-b border-gray-100 pb-2 mb-2">
                <div className="flex-1"></div>
                <div className="w-[60px] text-center">Confidence</div>
@@ -374,9 +366,9 @@ export default function FieldOfficersScreen({ navigateTo }: Props) {
             </button>
          </div>
 
-         {/* 6. Recommended Actions */}
+         {/* 5. Recommended Actions */}
          <div className="col-span-6 bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-            <h2 className="text-[13px] font-bold text-gray-900 mb-4">6. Recommended Actions</h2>
+            <h2 className="text-[13px] font-bold text-gray-900 mb-4">5. Recommended Actions</h2>
             <div className="grid grid-cols-2 gap-4">
                <button className="border border-gray-200 rounded-xl p-4 flex items-center gap-3 hover:border-green-300 hover:bg-green-50/30 transition-all text-left">
                   <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0 border border-green-100"><UserPlus size={16} className="text-green-600" /></div>
@@ -408,79 +400,7 @@ export default function FieldOfficersScreen({ navigateTo }: Props) {
             </button>
          </div>
 
-      </div>
-
-      {/* 7. Field Officer Directory */}
-      <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
-         <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[13px] font-bold text-gray-900">7. Field Officer Directory</h2>
-            <div className="flex items-center gap-3">
-               <button className="flex items-center gap-1.5 text-[11px] font-bold text-gray-500 hover:text-gray-800"><Filter size={12}/> Filters</button>
-               <button className="flex items-center gap-1.5 text-[11px] font-bold text-gray-500 hover:text-gray-800"><Download size={12}/> Export</button>
-               <MoreVertical size={14} className="text-gray-400 cursor-pointer" />
-            </div>
-         </div>
-         <table className="w-full text-left border-collapse">
-            <thead>
-               <tr className="border-b border-gray-200">
-                  <th className="py-2 pl-2 w-8"><input type="checkbox" className="rounded border-gray-300" /></th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500">Officer Name</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500">Employee ID</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500">District</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Assigned Enterprises</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Active Tasks</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Visits Completed</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Productivity Score</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">SLA %</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500">Last Sync</th>
-                  <th className="py-2 text-[11px] font-bold text-gray-500 text-center">Status</th>
-                  <th className="py-2 w-8"></th>
-               </tr>
-            </thead>
-            <tbody>
-               {DIRECTORY_DATA.map((row, i) => (
-                  <tr key={i} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                     <td className="py-3 pl-2"><input type="checkbox" className="rounded border-gray-300" /></td>
-                     <td className="py-3 flex items-center gap-2">
-                        <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt={row.name} className="w-6 h-6 rounded-full" />
-                        <span className="text-[11px] font-bold text-gray-900">{row.name}</span>
-                     </td>
-                     <td className="py-3 text-[11px] font-semibold text-gray-600">{row.id}</td>
-                     <td className="py-3 text-[11px] font-semibold text-gray-600">{row.dist}</td>
-                     <td className="py-3 text-[11px] font-semibold text-gray-600 text-center">{row.ent}</td>
-                     <td className="py-3 text-[11px] font-semibold text-gray-600 text-center">{row.tasks}</td>
-                     <td className="py-3 text-[11px] font-semibold text-gray-600 text-center">{row.vis}</td>
-                     <td className="py-3 text-[11px] font-bold text-green-600 text-center">{row.prod}</td>
-                     <td className="py-3 text-[11px] font-bold text-green-600 text-center">{row.sla}</td>
-                     <td className="py-3 text-[10px] font-medium text-gray-500">{row.sync}</td>
-                     <td className="py-3 text-center">
-                        <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${row.sColor}`}>{row.status}</span>
-                     </td>
-                     <td className="py-3 text-right"><MoreVertical size={14} className="text-gray-400 cursor-pointer hover:text-gray-700" /></td>
-                  </tr>
-               ))}
-            </tbody>
-         </table>
-         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
-            <div className="flex items-center gap-4">
-               <button className="text-[11px] font-bold text-gray-600 flex items-center gap-1"><CheckSquare size={12}/> Bulk Actions <span className="text-[8px]">▼</span></button>
-               <span className="text-[11px] font-medium text-gray-400">Showing 1 to 7 of 246 officers</span>
-            </div>
-            <div className="flex items-center gap-1">
-               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-400 hover:bg-gray-50">{"<"}</button>
-               <button className="w-6 h-6 flex items-center justify-center border border-indigo-200 bg-indigo-50 rounded text-indigo-700 text-[10px] font-bold">1</button>
-               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50 text-[10px] font-bold">2</button>
-               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50 text-[10px] font-bold">3</button>
-               <span className="px-1 text-gray-400">...</span>
-               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50 text-[10px] font-bold">36</button>
-               <button className="w-6 h-6 flex items-center justify-center border border-gray-200 rounded text-gray-600 hover:bg-gray-50">{">"}</button>
-               <div className="ml-2 flex items-center gap-1 border border-gray-200 rounded px-2 py-1 cursor-pointer hover:bg-gray-50">
-                  <span className="text-[10px] font-bold text-gray-600">10 / page</span>
-                  <span className="text-[8px] text-gray-400">▼</span>
-               </div>
-            </div>
-         </div>
-      </div>
+      </div></div>
 
     </div>
   );

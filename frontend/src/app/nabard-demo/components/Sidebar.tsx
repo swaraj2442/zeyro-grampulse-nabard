@@ -50,7 +50,7 @@ const NAV_ITEMS = [
 
 export default function Sidebar({ currentScreen, setCurrentScreen, onProfileClick }: SidebarProps) {
   const [isMinimized, setIsMinimized] = useState(false);
-  const [expandedMenu, setExpandedMenu] = useState<string | null>('Intelligence');
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
 
   return (
     <aside className={`shrink-0 h-full bg-white rounded-3xl flex flex-col py-6 shadow-sm border border-gray-100 transition-all duration-300 ${isMinimized ? 'w-[85px] items-center' : 'w-[240px]'}`}>
@@ -82,6 +82,7 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onProfileClic
           const isActive = currentScreen === screen || 
                            (label === 'Home' && currentScreen === 'overview');
           const isExpanded = expandedMenu === label;
+          const isParentActive = isActive || (hasSub && subItems?.some(sub => sub.screen === currentScreen));
           
           return (
             <div key={label} className="flex flex-col">
@@ -100,16 +101,16 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onProfileClic
                 className={`flex items-center rounded-xl transition-all ${
                   isMinimized ? 'w-[48px] h-[48px] justify-center p-0' : 'w-full justify-between px-4 py-3.5'
                 } ${
-                  isActive || isExpanded
+                  isParentActive
                     ? 'bg-[#f0fdf4] text-[#16a34a]'
                     : 'text-[#4b5563] hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
                 <div className="flex items-center gap-3.5">
-                  <Icon size={20} strokeWidth={isActive || isExpanded ? 2.5 : 2} className={isActive || isExpanded ? 'text-[#16a34a]' : 'text-gray-500'} />
+                  <Icon size={20} strokeWidth={isParentActive ? 2.5 : 2} className={isParentActive ? 'text-[#16a34a]' : 'text-gray-500'} />
                   {!isMinimized && (
                     <div className="flex items-center gap-2">
-                       <span className={`text-[14px] whitespace-nowrap ${isActive || isExpanded ? 'font-bold' : 'font-semibold'}`}>{label}</span>
+                       <span className={`text-[14px] whitespace-nowrap ${isParentActive ? 'font-bold' : 'font-semibold'}`}>{label}</span>
                        {badge && (
                          <span className="bg-[#f3e8ff] text-[#9333ea] text-[10px] font-bold px-1.5 py-0.5 rounded leading-none">{badge}</span>
                        )}
@@ -120,7 +121,7 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onProfileClic
                   isExpanded ? (
                     <ChevronUp size={16} strokeWidth={2} className="text-[#16a34a]" />
                   ) : (
-                    <ChevronRight size={16} strokeWidth={2} className={isActive ? 'text-[#16a34a]' : 'text-gray-400'} />
+                    <ChevronRight size={16} strokeWidth={2} className={isParentActive ? 'text-[#16a34a]' : 'text-gray-400'} />
                   )
                 )}
               </button>
